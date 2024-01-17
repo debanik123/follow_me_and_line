@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.header.setGeometry(QtCore.QRect(10, 30, 901, 71))
         self.header.setObjectName("header")
         self.header.setStyleSheet("background-color: gray;")
-        
+
         self.wonbot = QtWidgets.QToolButton(self.centralwidget)
         self.wonbot.setGeometry(QtCore.QRect(20, 40, 141, 51))
         self.wonbot.setText("")
