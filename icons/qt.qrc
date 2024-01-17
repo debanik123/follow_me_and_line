@@ -1,6 +1,10 @@
 <RCC>
   <qresource prefix="icons">
+    <file>battery-status.png</file>
+    <file>reset.png</file>
+    <file>reset.jpeg</file>
     <file>batterycharge_icon.png</file>
+    <file>resume.png</file>
     <file>charging_icon.png</file>
     <file>power-off.png</file>
     <file>stop-button.png</file>
