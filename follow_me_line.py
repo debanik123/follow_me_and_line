@@ -63,9 +63,12 @@ class Ui_MainWindow(object):
         self.push_four.setObjectName("push_four")
         self.push_four.setStyleSheet(deep_violet)
 
+        blue_text = "color: blue;"
         self.go_to_station = QtWidgets.QLabel(self.centralwidget)
         self.go_to_station.setGeometry(QtCore.QRect(630, 170, 101, 31))
         self.go_to_station.setObjectName("go_to_station")
+        self.go_to_station.setStyleSheet(blue_text)
+
         self.push_go = QtWidgets.QPushButton(self.centralwidget)
         self.push_go.setGeometry(QtCore.QRect(630, 340, 81, 31))
         self.push_go.setCheckable(True)
