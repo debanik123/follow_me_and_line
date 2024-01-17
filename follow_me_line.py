@@ -18,49 +18,76 @@ class Ui_MainWindow(object):
         self.obstracle_icon = QtWidgets.QToolButton(self.centralwidget)
         self.obstracle_icon.setGeometry(QtCore.QRect(660, 50, 41, 41))
         self.obstracle_icon.setText("")
+        
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+
+
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
+
         self.obstracle_alert_status = QtWidgets.QLabel(self.centralwidget)
         self.obstracle_alert_status.setGeometry(QtCore.QRect(530, 50, 121, 31))
         self.obstracle_alert_status.setObjectName("obstracle_alert_status")
+
         self.human_following_status = QtWidgets.QLabel(self.centralwidget)
         self.human_following_status.setGeometry(QtCore.QRect(180, 50, 171, 31))
         self.human_following_status.setObjectName("human_following_status")
+
+
         self.line_following_status = QtWidgets.QLabel(self.centralwidget)
         self.line_following_status.setGeometry(QtCore.QRect(360, 50, 151, 31))
         self.line_following_status.setObjectName("line_following_status")
+
+
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(130, 120, 121, 41))
         self.pushButton.setObjectName("pushButton")
+
         self.push_folllow_line = QtWidgets.QPushButton(self.centralwidget)
         self.push_folllow_line.setGeometry(QtCore.QRect(300, 120, 121, 41))
         self.push_folllow_line.setObjectName("push_folllow_line")
+
+        deep_violet = "background-color: #9400D3;"
+        blue_text = "color: blue;"
+
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
         self.push_one.setObjectName("push_one")
+        self.push_one.setStyleSheet(deep_violet)
+
         self.push_three = QtWidgets.QPushButton(self.centralwidget)
         self.push_three.setGeometry(QtCore.QRect(580, 270, 89, 51))
         self.push_three.setObjectName("push_three")
+        self.push_three.setStyleSheet(deep_violet)
+
         self.push_two = QtWidgets.QPushButton(self.centralwidget)
         self.push_two.setGeometry(QtCore.QRect(680, 210, 89, 51))
         self.push_two.setObjectName("push_two")
+        self.push_two.setStyleSheet(deep_violet)
+
         self.push_four = QtWidgets.QPushButton(self.centralwidget)
         self.push_four.setGeometry(QtCore.QRect(680, 270, 89, 51))
         self.push_four.setObjectName("push_four")
+        self.push_four.setStyleSheet(deep_violet)
+
         self.go_to_station = QtWidgets.QLabel(self.centralwidget)
         self.go_to_station.setGeometry(QtCore.QRect(630, 170, 101, 31))
         self.go_to_station.setTextFormat(QtCore.Qt.AutoText)
         self.go_to_station.setObjectName("go_to_station")
+        self.go_to_station.setStyleSheet(blue_text)
+
+
         self.push_go = QtWidgets.QPushButton(self.centralwidget)
         self.push_go.setGeometry(QtCore.QRect(630, 340, 81, 31))
         self.push_go.setCheckable(False)
         self.push_go.setChecked(False)
         self.push_go.setAutoRepeat(False)
         self.push_go.setObjectName("push_go")
+
+
         self.start_station = QtWidgets.QLabel(self.centralwidget)
         self.start_station.setGeometry(QtCore.QRect(560, 380, 111, 31))
         self.start_station.setObjectName("start_station")
