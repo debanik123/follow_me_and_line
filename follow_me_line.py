@@ -93,9 +93,13 @@ class Ui_MainWindow(object):
         self.start_station = QtWidgets.QLabel(self.centralwidget)
         self.start_station.setGeometry(QtCore.QRect(560, 380, 111, 31))
         self.start_station.setObjectName("start_station")
+        self.start_station.setStyleSheet(blue_text)
+        
         self.end_station = QtWidgets.QLabel(self.centralwidget)
         self.end_station.setGeometry(QtCore.QRect(680, 380, 111, 31))
         self.end_station.setObjectName("end_station")
+        self.end_station.setStyleSheet(blue_text)
+
         self.display_img = QtWidgets.QLabel(self.centralwidget)
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
         self.display_img.setText("")
