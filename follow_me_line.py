@@ -11,6 +11,7 @@ class Ui_MainWindow(object):
         self._translate = QtCore.QCoreApplication.translate
         self.start = None
         self.end = None
+        self.stop = 0
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -177,6 +178,7 @@ class Ui_MainWindow(object):
         self.resume.setIcon(icon5)
         self.resume.setIconSize(QtCore.QSize(30, 30))
         self.resume.setObjectName("resume")
+        self.resume.clicked.connect(self.resume_callback)
 
 
         self.emergency_stop = QtWidgets.QPushButton(self.centralwidget)
@@ -187,6 +189,7 @@ class Ui_MainWindow(object):
         self.emergency_stop.setIcon(icon6)
         self.emergency_stop.setIconSize(QtCore.QSize(40, 40))
         self.emergency_stop.setObjectName("emergency_stop")
+        self.emergency_stop.clicked.connect(self.emergency_stop_callback)
 
 
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.centralwidget)
@@ -294,7 +297,15 @@ class Ui_MainWindow(object):
             print("Go to sarting point "+ str(self.start) +" to end point "+ str(self.end))
         else:
             print("Goal points are not Valied")
+    
+    def emergency_stop_callback(self):
+        self.stop = 1
+        print("Pressed Emergency stop")
 
+    def resume_callback(self):
+        self.stop = 0
+        print("Resume The robot")
+    
     def drawStations(self, rectangle):
         painter = QtGui.QPainter(rectangle)
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
