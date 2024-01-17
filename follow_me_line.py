@@ -89,16 +89,20 @@ class Ui_MainWindow(object):
         self.push_go.setObjectName("push_go")
         self.push_go.setStyleSheet(green_text)
 
+        self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
+        self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 231, 31))
+        self.station_rectangle.setStyleSheet("border: 1px solid gray; background-color: gray;")
+        self.drawStations()
 
         self.start_station = QtWidgets.QLabel(self.centralwidget)
         self.start_station.setGeometry(QtCore.QRect(560, 380, 111, 31))
         self.start_station.setObjectName("start_station")
-        self.start_station.setStyleSheet(blue_text)
+        # self.start_station.setStyleSheet(blue_text)
         
         self.end_station = QtWidgets.QLabel(self.centralwidget)
         self.end_station.setGeometry(QtCore.QRect(680, 380, 111, 31))
         self.end_station.setObjectName("end_station")
-        self.end_station.setStyleSheet(blue_text)
+        # self.end_station.setStyleSheet(blue_text)
 
         self.display_img = QtWidgets.QLabel(self.centralwidget)
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
@@ -175,6 +179,15 @@ class Ui_MainWindow(object):
         self.start_station.setText(_translate("MainWindow", "Start Station : 1"))
         self.end_station.setText(_translate("MainWindow", "End Station : 2"))
         self.battery.setText(_translate("MainWindow", "..."))
+
+    
+    def drawStations(self):
+        painter = QtGui.QPainter(self.station_rectangle)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        pen = QtGui.QPen(QtGui.QColor(169, 169, 169), 2, QtCore.Qt.SolidLine)
+        painter.setPen(pen)
+        painter.drawRect(0, 0, self.station_rectangle.width(), self.station_rectangle.height())
+        painter.end()
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
