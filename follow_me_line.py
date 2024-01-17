@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
 
         # self.outer_frame = QtWidgets.QLabel(self.centralwidget)
-        # self.outer_frame.setGeometry(QtCore.QRect(8, 28, 901, 391))
+        # self.outer_frame.setGeometry(QtCore.QRect(8, 28, 903, 393))
         # self.outer_frame.setObjectName("outer_frame")
         # self.outer_frame.setStyleSheet("border: 2px solid black;")
 
