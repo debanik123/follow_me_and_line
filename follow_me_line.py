@@ -82,7 +82,7 @@ class Ui_MainWindow(object):
 
 
         self.push_go = QtWidgets.QPushButton(self.centralwidget)
-        self.push_go.setGeometry(QtCore.QRect(630, 340, 81, 31))
+        self.push_go.setGeometry(QtCore.QRect(620, 340, 81, 31))
         self.push_go.setCheckable(False)
         self.push_go.setChecked(False)
         self.push_go.setAutoRepeat(False)
@@ -90,9 +90,9 @@ class Ui_MainWindow(object):
         self.push_go.setStyleSheet(green_text)
 
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
-        self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 231, 31))
+        self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
         self.station_rectangle.setStyleSheet("border: 1px solid gray; background-color: gray;")
-        self.drawStations()
+        self.drawStations(self.station_rectangle)
 
         self.start_station = QtWidgets.QLabel(self.centralwidget)
         self.start_station.setGeometry(QtCore.QRect(560, 380, 111, 31))
@@ -181,12 +181,12 @@ class Ui_MainWindow(object):
         self.battery.setText(_translate("MainWindow", "..."))
 
     
-    def drawStations(self):
-        painter = QtGui.QPainter(self.station_rectangle)
+    def drawStations(self, rectangle):
+        painter = QtGui.QPainter(rectangle)
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
         pen = QtGui.QPen(QtGui.QColor(169, 169, 169), 2, QtCore.Qt.SolidLine)
         painter.setPen(pen)
-        painter.drawRect(0, 0, self.station_rectangle.width(), self.station_rectangle.height())
+        painter.drawRect(0, 0, rectangle.width(), rectangle.height())
         painter.end()
 
 def main():
