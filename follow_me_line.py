@@ -51,13 +51,13 @@ class Ui_MainWindow(object):
         self.push_followme = QtWidgets.QPushButton(self.centralwidget)
         self.push_followme.setGeometry(QtCore.QRect(130, 120, 121, 41))
         self.push_followme.setObjectName("push_followme")
+        self.push_followme.setStyleSheet(self.bg_blue)
 
         self.push_folllow_line = QtWidgets.QPushButton(self.centralwidget)
         self.push_folllow_line.setGeometry(QtCore.QRect(300, 120, 121, 41))
         self.push_folllow_line.setObjectName("push_folllow_line")
-
+        self.push_folllow_line.setStyleSheet(self.bg_blue)
         
-
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
         self.push_one.setObjectName("push_one")
