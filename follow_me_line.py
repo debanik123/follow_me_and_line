@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
 
-
+        
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
@@ -108,6 +108,7 @@ class Ui_MainWindow(object):
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
         self.display_img.setText("")
         self.display_img.setObjectName("display_img")
+
         self.battery = QtWidgets.QToolButton(self.centralwidget)
         self.battery.setGeometry(QtCore.QRect(720, 50, 31, 41))
         icon2 = QtGui.QIcon()
@@ -115,6 +116,8 @@ class Ui_MainWindow(object):
         self.battery.setIcon(icon2)
         self.battery.setIconSize(QtCore.QSize(30, 30))
         self.battery.setObjectName("battery")
+
+
         self.power_off = QtWidgets.QPushButton(self.centralwidget)
         self.power_off.setGeometry(QtCore.QRect(780, 120, 61, 41))
         self.power_off.setText("")
@@ -123,6 +126,7 @@ class Ui_MainWindow(object):
         self.power_off.setIcon(icon3)
         self.power_off.setIconSize(QtCore.QSize(40, 40))
         self.power_off.setObjectName("power_off")
+
         self.reset = QtWidgets.QPushButton(self.centralwidget)
         self.reset.setGeometry(QtCore.QRect(680, 120, 61, 41))
         self.reset.setText("")
@@ -131,6 +135,8 @@ class Ui_MainWindow(object):
         self.reset.setIcon(icon4)
         self.reset.setIconSize(QtCore.QSize(40, 40))
         self.reset.setObjectName("reset")
+
+
         self.resume = QtWidgets.QPushButton(self.centralwidget)
         self.resume.setGeometry(QtCore.QRect(580, 120, 61, 41))
         self.resume.setText("")
@@ -139,6 +145,8 @@ class Ui_MainWindow(object):
         self.resume.setIcon(icon5)
         self.resume.setIconSize(QtCore.QSize(30, 30))
         self.resume.setObjectName("resume")
+
+
         self.emergency_stop = QtWidgets.QPushButton(self.centralwidget)
         self.emergency_stop.setGeometry(QtCore.QRect(470, 120, 61, 41))
         self.emergency_stop.setText("")
@@ -147,6 +155,8 @@ class Ui_MainWindow(object):
         self.emergency_stop.setIcon(icon6)
         self.emergency_stop.setIconSize(QtCore.QSize(40, 40))
         self.emergency_stop.setObjectName("emergency_stop")
+
+
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.centralwidget)
         self.dateTimeEdit.setGeometry(QtCore.QRect(760, 60, 151, 26))
         self.dateTimeEdit.setObjectName("dateTimeEdit")
