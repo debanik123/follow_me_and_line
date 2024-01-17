@@ -197,8 +197,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.obstracle_alert_status.setText(_translate("MainWindow", "Obstracle Status"))
-        self.human_following_status.setText(_translate("MainWindow", "Human Follow Status: 1"))
-        self.line_following_status.setText(_translate("MainWindow", "Line Follow status: 0"))
+        self.human_following_status.setText(_translate("MainWindow", "Human Follow Status Act"))
+        self.line_following_status.setText(_translate("MainWindow", "Line Follow status Act"))
         self.push_followme.setText(_translate("MainWindow", "Follow Me"))
         self.push_folllow_line.setText(_translate("MainWindow", "Follow Line"))
         self.push_one.setText(_translate("MainWindow", "One"))
@@ -222,7 +222,7 @@ class Ui_MainWindow(object):
         # Add your logic for the "Follow Line" action here
         self.line_following_status.setStyleSheet("background-color: green;")
         self.human_following_status.setStyleSheet("")
-        
+
     def drawStations(self, rectangle):
         painter = QtGui.QPainter(rectangle)
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
