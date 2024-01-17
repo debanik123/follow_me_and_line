@@ -9,6 +9,9 @@ class Ui_MainWindow(object):
         self.green_text = "color: green;"
         self.bg_blue = "background-color: blue;"
 
+        self.start = None
+        self.end = None
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(918, 521)
@@ -78,21 +81,26 @@ class Ui_MainWindow(object):
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
         self.push_one.setObjectName("push_one")
         self.push_one.setStyleSheet(self.deep_violet)
+        self.push_one.clicked.connect(self.push_one_callback)
 
         self.push_three = QtWidgets.QPushButton(self.centralwidget)
         self.push_three.setGeometry(QtCore.QRect(580, 270, 89, 51))
         self.push_three.setObjectName("push_three")
         self.push_three.setStyleSheet(self.deep_violet)
+        self.push_three.clicked.connect(self.push_three_callback)
 
         self.push_two = QtWidgets.QPushButton(self.centralwidget)
         self.push_two.setGeometry(QtCore.QRect(680, 210, 89, 51))
         self.push_two.setObjectName("push_two")
         self.push_two.setStyleSheet(self.deep_violet)
+        self.push_two.clicked.connect(self.push_two_callback)
 
         self.push_four = QtWidgets.QPushButton(self.centralwidget)
         self.push_four.setGeometry(QtCore.QRect(680, 270, 89, 51))
         self.push_four.setObjectName("push_four")
         self.push_four.setStyleSheet(self.deep_violet)
+        self.push_four.clicked.connect(self.push_four_callback)
+
 
         self.go_to_station = QtWidgets.QLabel(self.centralwidget)
         self.go_to_station.setGeometry(QtCore.QRect(630, 170, 101, 31))
@@ -207,21 +215,43 @@ class Ui_MainWindow(object):
         self.push_four.setText(_translate("MainWindow", "four"))
         self.go_to_station.setText(_translate("MainWindow", "Go to Station"))
         self.push_go.setText(_translate("MainWindow", "Go"))
-        self.start_station.setText(_translate("MainWindow", "Start Station : 1"))
-        self.end_station.setText(_translate("MainWindow", "End Station : 2"))
+        self.start_station.setText(_translate("MainWindow", "Start Station : "))
+        self.end_station.setText(_translate("MainWindow", "End Station : "))
         self.battery.setText(_translate("MainWindow", "..."))
     
     def follow_me_callback(self):
-        print("Follow Me button clicked")
+        # print("Follow Me button clicked")
         # Add your logic for the "Follow Me" action here
         self.human_following_status.setStyleSheet("background-color: green;")
         self.line_following_status.setStyleSheet("")
 
     def follow_line_callback(self):
-        print("Follow Line button clicked")
+        # print("Follow Line button clicked")
         # Add your logic for the "Follow Line" action here
         self.line_following_status.setStyleSheet("background-color: green;")
         self.human_following_status.setStyleSheet("")
+    
+    def push_one_callback(self):
+        if(self.start is not None):
+            self.start = 1
+        if (self.end is not None):
+            self.end = 1
+    def push_two_callback(self):
+        if(self.start is not None):
+            self.start = 1
+        if (self.end is not None):
+            self.end = 1
+    def push_three_callback(self):
+        if(self.start is not None):
+            self.start = 1
+        if (self.end is not None):
+            self.end = 1
+    def push_four_callback(self):
+        if(self.start is not None):
+            self.start = 1
+        if (self.end is not None):
+            self.end = 1
+        
 
     def drawStations(self, rectangle):
         painter = QtGui.QPainter(rectangle)
