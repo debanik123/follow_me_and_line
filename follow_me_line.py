@@ -19,14 +19,14 @@ class Ui_MainWindow(object):
         self.obstracle_icon.setGeometry(QtCore.QRect(510, 50, 41, 41))
         self.obstracle_icon.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
         self.obstracle_alert_status = QtWidgets.QLabel(self.centralwidget)
         self.obstracle_alert_status.setGeometry(QtCore.QRect(346, 56, 161, 31))
-        self.obstracle_alert_status.setObjectName("obstracle_alert_status")
+        self.obstracle_alert_status.setObjectName("obstracle_status")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.obstracle_alert_status.setText(_translate("MainWindow", "Obstracle Alert Status"))
+        self.obstracle_alert_status.setText(_translate("MainWindow", "Obstracle Status"))
 
 
 def main():
