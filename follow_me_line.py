@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
 
-        
+
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
         self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
         self.station_rectangle.setStyleSheet("border: 1px solid gray; background-color: gray;")
-        self.drawStations(self.station_rectangle)
+        # self.drawStations(self.station_rectangle)
 
         self.start_station = QtWidgets.QLabel(self.centralwidget)
         self.start_station.setGeometry(QtCore.QRect(560, 380, 111, 31))
@@ -106,6 +106,8 @@ class Ui_MainWindow(object):
 
         self.display_img = QtWidgets.QLabel(self.centralwidget)
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
+        self.display_img.setStyleSheet("border: 1px solid gray; background-color: gray;")
+        # self.drawStations(self.display_img)
         self.display_img.setText("")
         self.display_img.setObjectName("display_img")
 
