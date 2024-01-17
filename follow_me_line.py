@@ -107,6 +107,7 @@ class Ui_MainWindow(object):
         self.go_to_station.setTextFormat(QtCore.Qt.AutoText)
         self.go_to_station.setObjectName("go_to_station")
         self.go_to_station.setStyleSheet(self.blue_text)
+        
 
 
         self.push_go = QtWidgets.QPushButton(self.centralwidget)
@@ -116,6 +117,7 @@ class Ui_MainWindow(object):
         self.push_go.setAutoRepeat(False)
         self.push_go.setObjectName("push_go")
         self.push_go.setStyleSheet(self.green_text)
+        self.push_go.clicked.connect(self.go_callback)
 
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
         self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
@@ -275,7 +277,7 @@ class Ui_MainWindow(object):
         self.start = None
         self.end = None
         self.update_station()
-        
+
     def update_station(self):
         if self.start is not None:
             self.start_station.setText(self._translate("MainWindow", "Start Station : "+str(self.start)))
@@ -286,7 +288,12 @@ class Ui_MainWindow(object):
             self.end_station.setText(self._translate("MainWindow", "End Station : "+str(self.end)))
         else:
             self.end_station.setText(self._translate("MainWindow", "End Station : "))
-        
+    
+    def go_callback(self):
+        if self.start and self.end:
+            print("Go to sarting point "+ str(self.start) +" to end point "+ str(self.end))
+        else:
+            print("Goal points are not Valied")
 
     def drawStations(self, rectangle):
         painter = QtGui.QPainter(rectangle)
