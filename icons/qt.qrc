@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>obstracle_no.png</file>
+    <file>obstracle_yes.png</file>
+    <file>wonbot_2_인쇄용-02.png</file>
+  </qresource>
+</RCC>
