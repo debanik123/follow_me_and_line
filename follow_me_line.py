@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
 
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
         self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
-        self.station_rectangle.setStyleSheet("border: 1px solid gray; background-color: gray;")
+        self.station_rectangle.setStyleSheet("background-color: gray;")
         # self.drawStations(self.station_rectangle)
 
         self.start_station = QtWidgets.QLabel(self.centralwidget)
@@ -106,8 +106,7 @@ class Ui_MainWindow(object):
 
         self.display_img = QtWidgets.QLabel(self.centralwidget)
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
-        self.display_img.setStyleSheet("border: 1px solid gray; background-color: gray;")
-        # self.drawStations(self.display_img)
+        self.display_img.setStyleSheet("border: 2px solid black; background-color: gray;")
         self.display_img.setText("")
         self.display_img.setObjectName("display_img")
 
