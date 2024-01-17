@@ -4,6 +4,10 @@ import sys
 class Ui_MainWindow(object):
     def __init__(self):
         super().__init__()
+        self.deep_violet = "background-color: #9400D3;"
+        self.blue_text = "color: blue;"
+        self.green_text = "color: green;"
+        self.bg_blue = "background-color: blue;"
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -52,36 +56,33 @@ class Ui_MainWindow(object):
         self.push_folllow_line.setGeometry(QtCore.QRect(300, 120, 121, 41))
         self.push_folllow_line.setObjectName("push_folllow_line")
 
-        deep_violet = "background-color: #9400D3;"
-        blue_text = "color: blue;"
-        green_text = "color: green;"
-        bg_blue = "background-color: blue;"
+        
 
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
         self.push_one.setObjectName("push_one")
-        self.push_one.setStyleSheet(deep_violet)
+        self.push_one.setStyleSheet(self.deep_violet)
 
         self.push_three = QtWidgets.QPushButton(self.centralwidget)
         self.push_three.setGeometry(QtCore.QRect(580, 270, 89, 51))
         self.push_three.setObjectName("push_three")
-        self.push_three.setStyleSheet(deep_violet)
+        self.push_three.setStyleSheet(self.deep_violet)
 
         self.push_two = QtWidgets.QPushButton(self.centralwidget)
         self.push_two.setGeometry(QtCore.QRect(680, 210, 89, 51))
         self.push_two.setObjectName("push_two")
-        self.push_two.setStyleSheet(deep_violet)
+        self.push_two.setStyleSheet(self.deep_violet)
 
         self.push_four = QtWidgets.QPushButton(self.centralwidget)
         self.push_four.setGeometry(QtCore.QRect(680, 270, 89, 51))
         self.push_four.setObjectName("push_four")
-        self.push_four.setStyleSheet(deep_violet)
+        self.push_four.setStyleSheet(self.deep_violet)
 
         self.go_to_station = QtWidgets.QLabel(self.centralwidget)
         self.go_to_station.setGeometry(QtCore.QRect(630, 170, 101, 31))
         self.go_to_station.setTextFormat(QtCore.Qt.AutoText)
         self.go_to_station.setObjectName("go_to_station")
-        self.go_to_station.setStyleSheet(blue_text)
+        self.go_to_station.setStyleSheet(self.blue_text)
 
 
         self.push_go = QtWidgets.QPushButton(self.centralwidget)
@@ -90,7 +91,7 @@ class Ui_MainWindow(object):
         self.push_go.setChecked(False)
         self.push_go.setAutoRepeat(False)
         self.push_go.setObjectName("push_go")
-        self.push_go.setStyleSheet(green_text)
+        self.push_go.setStyleSheet(self.green_text)
 
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
         self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
