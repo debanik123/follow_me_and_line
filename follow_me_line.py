@@ -38,8 +38,8 @@ class Ui_MainWindow(object):
         self.obstracle_icon.setText("")
 
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
@@ -55,7 +55,6 @@ class Ui_MainWindow(object):
         self.human_following_status.setObjectName("human_following_status")
         # self.human_following_status.setStyleSheet("background-color: gray;")
 
-
         self.line_following_status = QtWidgets.QLabel(self.centralwidget)
         self.line_following_status.setGeometry(QtCore.QRect(360, 50, 151, 31))
         self.line_following_status.setObjectName("line_following_status")
@@ -66,11 +65,14 @@ class Ui_MainWindow(object):
         self.push_followme.setGeometry(QtCore.QRect(130, 120, 121, 41))
         self.push_followme.setObjectName("push_followme")
         self.push_followme.setStyleSheet(self.bg_blue)
+        self.push_followme.clicked.connect(self.follow_me_callback)
+        
 
         self.push_folllow_line = QtWidgets.QPushButton(self.centralwidget)
         self.push_folllow_line.setGeometry(QtCore.QRect(300, 120, 121, 41))
         self.push_folllow_line.setObjectName("push_folllow_line")
         self.push_folllow_line.setStyleSheet(self.bg_blue)
+        self.push_folllow_line.clicked.connect(self.follow_line_callback)
 
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
@@ -208,8 +210,19 @@ class Ui_MainWindow(object):
         self.start_station.setText(_translate("MainWindow", "Start Station : 1"))
         self.end_station.setText(_translate("MainWindow", "End Station : 2"))
         self.battery.setText(_translate("MainWindow", "..."))
-
     
+    def follow_me_callback(self):
+        print("Follow Me button clicked")
+        # Add your logic for the "Follow Me" action here
+        self.human_following_status.setStyleSheet("background-color: green;")
+        self.line_following_status.setStyleSheet("")
+
+    def follow_line_callback(self):
+        print("Follow Line button clicked")
+        # Add your logic for the "Follow Line" action here
+        self.line_following_status.setStyleSheet("background-color: green;")
+        self.human_following_status.setStyleSheet("")
+        
     def drawStations(self, rectangle):
         painter = QtGui.QPainter(rectangle)
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
