@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        
+
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
@@ -44,9 +44,9 @@ class Ui_MainWindow(object):
         self.line_following_status.setObjectName("line_following_status")
 
 
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(130, 120, 121, 41))
-        self.pushButton.setObjectName("pushButton")
+        self.push_followme = QtWidgets.QPushButton(self.centralwidget)
+        self.push_followme.setGeometry(QtCore.QRect(130, 120, 121, 41))
+        self.push_followme.setObjectName("push_followme")
 
         self.push_folllow_line = QtWidgets.QPushButton(self.centralwidget)
         self.push_folllow_line.setGeometry(QtCore.QRect(300, 120, 121, 41))
@@ -55,6 +55,7 @@ class Ui_MainWindow(object):
         deep_violet = "background-color: #9400D3;"
         blue_text = "color: blue;"
         green_text = "color: green;"
+        bg_blue = "background-color: blue;"
 
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
@@ -181,7 +182,7 @@ class Ui_MainWindow(object):
         self.obstracle_alert_status.setText(_translate("MainWindow", "Obstracle Status"))
         self.human_following_status.setText(_translate("MainWindow", "Human Follow Status: 1"))
         self.line_following_status.setText(_translate("MainWindow", "Line Follow status: 0"))
-        self.pushButton.setText(_translate("MainWindow", "Follow Me"))
+        self.push_followme.setText(_translate("MainWindow", "Follow Me"))
         self.push_folllow_line.setText(_translate("MainWindow", "Follow Line"))
         self.push_one.setText(_translate("MainWindow", "One"))
         self.push_three.setText(_translate("MainWindow", "three"))
