@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         self.obstracle_icon = QtWidgets.QToolButton(self.centralwidget)
         self.obstracle_icon.setGeometry(QtCore.QRect(660, 50, 41, 41))
         self.obstracle_icon.setText("")
-        
+
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
@@ -52,6 +52,7 @@ class Ui_MainWindow(object):
 
         deep_violet = "background-color: #9400D3;"
         blue_text = "color: blue;"
+        green_text = "color: green;"
 
         self.push_one = QtWidgets.QPushButton(self.centralwidget)
         self.push_one.setGeometry(QtCore.QRect(580, 210, 89, 51))
@@ -86,6 +87,7 @@ class Ui_MainWindow(object):
         self.push_go.setChecked(False)
         self.push_go.setAutoRepeat(False)
         self.push_go.setObjectName("push_go")
+        self.push_go.setStyleSheet(green_text)
 
 
         self.start_station = QtWidgets.QLabel(self.centralwidget)
