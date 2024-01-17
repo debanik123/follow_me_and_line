@@ -4,7 +4,7 @@ import sys
 class Ui_MainWindow(object):
     def __init__(self):
         super().__init__()
-        
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(918, 521)
@@ -25,8 +25,7 @@ class Ui_MainWindow(object):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_yes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon1.addPixmap(QtGui.QPixmap("icons/obstracle_no.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-
-
+        
         self.obstracle_icon.setIcon(icon1)
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
