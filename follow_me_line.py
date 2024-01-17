@@ -8,7 +8,7 @@ class Ui_MainWindow(object):
         self.blue_text = "color: blue;"
         self.green_text = "color: green;"
         self.bg_blue = "background-color: blue;"
-
+        self._translate = QtCore.QCoreApplication.translate
         self.start = None
         self.end = None
 
@@ -164,6 +164,7 @@ class Ui_MainWindow(object):
         self.reset.setIcon(icon4)
         self.reset.setIconSize(QtCore.QSize(40, 40))
         self.reset.setObjectName("reset")
+        self.reset.clicked.connect(self.reset_callback)
 
 
         self.resume = QtWidgets.QPushButton(self.centralwidget)
@@ -202,22 +203,21 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.obstracle_alert_status.setText(_translate("MainWindow", "Obstracle Status"))
-        self.human_following_status.setText(_translate("MainWindow", "Human Follow Status Act"))
-        self.line_following_status.setText(_translate("MainWindow", "Line Follow status Act"))
-        self.push_followme.setText(_translate("MainWindow", "Follow Me"))
-        self.push_folllow_line.setText(_translate("MainWindow", "Follow Line"))
-        self.push_one.setText(_translate("MainWindow", "One"))
-        self.push_three.setText(_translate("MainWindow", "three"))
-        self.push_two.setText(_translate("MainWindow", "two"))
-        self.push_four.setText(_translate("MainWindow", "four"))
-        self.go_to_station.setText(_translate("MainWindow", "Go to Station"))
-        self.push_go.setText(_translate("MainWindow", "Go"))
-        self.start_station.setText(_translate("MainWindow", "Start Station : "))
-        self.end_station.setText(_translate("MainWindow", "End Station : "))
-        self.battery.setText(_translate("MainWindow", "..."))
+        
+        MainWindow.setWindowTitle(self._translate("MainWindow", "MainWindow"))
+        self.obstracle_alert_status.setText(self._translate("MainWindow", "Obstracle Status"))
+        self.human_following_status.setText(self._translate("MainWindow", "Human Follow Status Act"))
+        self.line_following_status.setText(self._translate("MainWindow", "Line Follow status Act"))
+        self.push_followme.setText(self._translate("MainWindow", "Follow Me"))
+        self.push_folllow_line.setText(self._translate("MainWindow", "Follow Line"))
+        self.push_one.setText(self._translate("MainWindow", "One"))
+        self.push_three.setText(self._translate("MainWindow", "three"))
+        self.push_two.setText(self._translate("MainWindow", "two"))
+        self.push_four.setText(self._translate("MainWindow", "four"))
+        self.go_to_station.setText(self._translate("MainWindow", "Go to Station"))
+        self.push_go.setText(self._translate("MainWindow", "Go"))
+        
+        self.battery.setText(self._translate("MainWindow", "..."))
     
     def follow_me_callback(self):
         # print("Follow Me button clicked")
@@ -232,25 +232,60 @@ class Ui_MainWindow(object):
         self.human_following_status.setStyleSheet("")
     
     def push_one_callback(self):
-        if(self.start is not None):
-            self.start = 1
-        if (self.end is not None):
+        if self.start:
             self.end = 1
+            
+        if self.start is None:
+            self.start = 1
+            self.end = None
+        
+        self.update_station()
+        
     def push_two_callback(self):
-        if(self.start is not None):
-            self.start = 1
-        if (self.end is not None):
-            self.end = 1
+        if self.start:
+            self.end = 2
+
+        if self.start is None:
+            self.start = 2
+            self.end = None
+        
+        self.update_station()
+
     def push_three_callback(self):
-        if(self.start is not None):
-            self.start = 1
-        if (self.end is not None):
-            self.end = 1
+        if self.start:
+            self.end = 3
+
+        if self.start is None:
+            self.start = 3
+            self.end = None
+        
+        self.update_station()
+
     def push_four_callback(self):
-        if(self.start is not None):
-            self.start = 1
-        if (self.end is not None):
-            self.end = 1
+        if self.start:
+            self.end = 4
+        
+        if self.start is None:
+            self.start = 4
+            self.end = None
+        
+        self.update_station()
+    
+    def reset_callback(self):
+        self.start = None
+        self.end = None
+        self.update_station()
+        
+    def update_station(self):
+        if self.start is not None:
+            self.start_station.setText(self._translate("MainWindow", "Start Station : "+str(self.start)))
+        else:
+            self.start_station.setText(self._translate("MainWindow", "Start Station : "))
+        
+        if self.end is not None:
+            self.end_station.setText(self._translate("MainWindow", "End Station : "+str(self.end)))
+        else:
+            self.end_station.setText(self._translate("MainWindow", "End Station : "))
         
 
     def drawStations(self, rectangle):
