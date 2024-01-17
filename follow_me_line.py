@@ -14,6 +14,12 @@ class Ui_MainWindow(object):
         MainWindow.resize(918, 521)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        self.header = QtWidgets.QLabel(self.centralwidget)
+        self.header.setGeometry(QtCore.QRect(10, 30, 901, 71))
+        self.header.setObjectName("header")
+        self.header.setStyleSheet("background-color: gray;")
+        
         self.wonbot = QtWidgets.QToolButton(self.centralwidget)
         self.wonbot.setGeometry(QtCore.QRect(20, 40, 141, 51))
         self.wonbot.setText("")
@@ -34,6 +40,7 @@ class Ui_MainWindow(object):
         self.obstracle_icon.setIconSize(QtCore.QSize(200, 200))
         self.obstracle_icon.setObjectName("obstracle_icon")
 
+
         self.obstracle_alert_status = QtWidgets.QLabel(self.centralwidget)
         self.obstracle_alert_status.setGeometry(QtCore.QRect(530, 50, 121, 31))
         self.obstracle_alert_status.setObjectName("obstracle_alert_status")
@@ -41,13 +48,13 @@ class Ui_MainWindow(object):
         self.human_following_status = QtWidgets.QLabel(self.centralwidget)
         self.human_following_status.setGeometry(QtCore.QRect(180, 50, 171, 31))
         self.human_following_status.setObjectName("human_following_status")
-        self.human_following_status.setStyleSheet("background-color: gray;")
+        # self.human_following_status.setStyleSheet("background-color: gray;")
 
 
         self.line_following_status = QtWidgets.QLabel(self.centralwidget)
         self.line_following_status.setGeometry(QtCore.QRect(360, 50, 151, 31))
         self.line_following_status.setObjectName("line_following_status")
-        self.line_following_status.setStyleSheet("background-color: gray;")
+        # self.line_following_status.setStyleSheet("background-color: gray;")
 
 
         self.push_followme = QtWidgets.QPushButton(self.centralwidget)
@@ -112,7 +119,7 @@ class Ui_MainWindow(object):
 
         self.display_img = QtWidgets.QLabel(self.centralwidget)
         self.display_img.setGeometry(QtCore.QRect(140, 210, 341, 201))
-        self.display_img.setStyleSheet("border: 2px solid black; background-color: gray;")
+        self.display_img.setStyleSheet("border: 2px solid black; background-color: white;")
         self.display_img.setText("")
         self.display_img.setObjectName("display_img")
 
