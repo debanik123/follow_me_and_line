@@ -1,0 +1,21 @@
+# Ignore everything
+/*
+/*/
+
+# But not these files & folders...
+!.gitignore
+!/human_follow.py
+!/LICENSE
+!/README.md
+!/tracker.py
+!/tracking_helpers.py
+!/weights
+!/deep_sort
+!/human_follow_rs.py
+!/human_follow_rs_hand_track.py
+!/pcl_utils.py
+!/hand_tracking_test.py
+!/human_pose_detection.py
+!/test
+!/yolov8_human_following_rs.py
+!/rs_math.py
