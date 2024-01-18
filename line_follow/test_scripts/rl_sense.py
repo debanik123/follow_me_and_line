@@ -27,7 +27,8 @@ class YellowLineFollower(Node):
 
     def timer_callback(self):
         if self.stop_flag == 1:
-            self.stop_robot()
+            # self.stop_robot()
+            self.inplace_rotation()
 
 
 
@@ -152,7 +153,17 @@ class YellowLineFollower(Node):
         cmd_vel_msg.angular.y = 0.0
         cmd_vel_msg.angular.z = 0.0
         self.cmd_vel_pub.publish(cmd_vel_msg)
-
+    
+    def inplace_rotation(self):
+        print("Linear Velocity:", 0.0, "Angular Velocity:", 0.34)
+        cmd_vel_msg = Twist()
+        cmd_vel_msg.linear.x = 0.0
+        cmd_vel_msg.linear.y = 0.0
+        cmd_vel_msg.linear.z = 0.0
+        cmd_vel_msg.angular.x = 0.0
+        cmd_vel_msg.angular.y = 0.0
+        cmd_vel_msg.angular.z = 0.7
+        self.cmd_vel_pub.publish(cmd_vel_msg)
     
     def cmd_vel(self, l_v, a_v):
         print("Linear Velocity:", l_v, "Angular Velocity:", a_v)
