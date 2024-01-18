@@ -130,7 +130,7 @@ class YellowLineFollower(Node):
         # cv2.imshow("Yellow Line Following", color_image)
 
     def run(self):
-        cv2.namedWindow("Yellow Line Following")
+        # cv2.namedWindow("Yellow Line Following")
         while cv2.waitKey(1) < 0:
             frames = self.pipe.wait_for_frames()
             color_frame = frames.get_color_frame()
