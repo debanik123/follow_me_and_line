@@ -20,7 +20,7 @@ class YellowLineFollower(Node):
         self.vel_max = 1.0
 
         self.cmd_vel_pub = self.create_publisher(Twist, "cmd_vel", 10)
-        timer_period = 3  # seconds
+        timer_period = 1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
         self.stop_flag = 0
@@ -89,6 +89,10 @@ class YellowLineFollower(Node):
         yellow_thresholded = cv2.erode(yellow_thresholded, None, iterations=2)
         # yellow_thresholded = cv2.dilate(yellow_thresholded, None, iterations=2)
         contours, _ = cv2.findContours(yellow_thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        if contours:
+            self.stop_flag = 0
+        else:
+            self.stop_flag = 1
         im_midpoint = (int(color_image.shape[1] // 2.0), int(color_image.shape[0] // 2.0))
         pix_distances = []
         centers = []
@@ -109,7 +113,7 @@ class YellowLineFollower(Node):
                 min_img_pix, min_Im_distance = self.cluster_create(color_image, im_midpoint[0], im_midpoint[1], depth_frame, color_=(0, 255, 255))
 
                 linear_velocity, angular_velocity, current_distance = pvg_rs.generate_velocity_from_pixels(min_img_pix, min_cm_pix)
-                print("Linear Velocity:", linear_velocity, "Angular Velocity:", angular_velocity)
+                
 
                 self.cmd_vel(linear_velocity, angular_velocity)
                 
@@ -119,9 +123,8 @@ class YellowLineFollower(Node):
 
                 cv2.putText(color_image, "linear_x: "+ linear_x_str +" angular_z: " + angular_z_str,(min_cm_pix[0], min_cm_pix[0]),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
                 cv2.putText(color_image, "curr_dis: "+str(curr_dis_str),(min_cm_pix[0], min_cm_pix[0]-80),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
-            #     self.stop_flag = 0
-            # else:
-            #     self.stop_flag = 1
+                
+            
             
         cv2.imshow("Yellow Line Following", color_image)
 
@@ -140,6 +143,7 @@ class YellowLineFollower(Node):
             rclpy.spin_once(self, timeout_sec=0.0000001)
     
     def stop_robot(self):
+        print("Linear Velocity:", 0.0, "Angular Velocity:", 0.0)
         cmd_vel_msg = Twist()
         cmd_vel_msg.linear.x = 0.0
         cmd_vel_msg.linear.y = 0.0
@@ -148,8 +152,10 @@ class YellowLineFollower(Node):
         cmd_vel_msg.angular.y = 0.0
         cmd_vel_msg.angular.z = 0.0
         self.cmd_vel_pub.publish(cmd_vel_msg)
+
     
     def cmd_vel(self, l_v, a_v):
+        print("Linear Velocity:", l_v, "Angular Velocity:", a_v)
         cmd_vel_msg = Twist()
         cmd_vel_msg.linear.x = l_v
         cmd_vel_msg.linear.y = 0.0
