@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="icons">
+    <file>unknown.png</file>
+    <file>red_icon.jpg</file>
+    <file>green_signal.png</file>
+    <file>batterycharge_icon.png</file>
+    <file>blue_signal.png</file>
+    <file>green_signal.png</file>
+    <file>red_signal.png</file>
+    <file>yellow_icon.jpg</file>
     <file>battery-status.png</file>
     <file>reset.png</file>
     <file>reset.jpeg</file>
