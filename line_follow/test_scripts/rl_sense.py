@@ -20,6 +20,15 @@ class YellowLineFollower(Node):
         self.vel_max = 1.0
 
         self.cmd_vel_pub = self.create_publisher(Twist, "cmd_vel", 10)
+        timer_period = 3  # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
+        self.stop_flag = 0
+
+    def timer_callback(self):
+        if self.stop_flag == 1:
+            self.stop_robot()
+
 
 
     def start_pipeline(self):
@@ -88,7 +97,7 @@ class YellowLineFollower(Node):
         for contour in contours:
             bounding_box = cv2.boundingRect(contour)
             contour_area = cv2.contourArea(contour)
-            print(contour_area)
+            # print(contour_area)
             # Set a threshold for the minimum contour area
             min_contour_area_threshold = 1000
 
@@ -110,8 +119,10 @@ class YellowLineFollower(Node):
 
                 cv2.putText(color_image, "linear_x: "+ linear_x_str +" angular_z: " + angular_z_str,(min_cm_pix[0], min_cm_pix[0]),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
                 cv2.putText(color_image, "curr_dis: "+str(curr_dis_str),(min_cm_pix[0], min_cm_pix[0]-80),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
+            #     self.stop_flag = 0
             # else:
-            #     self.stop_robot()
+            #     self.stop_flag = 1
+            
         cv2.imshow("Yellow Line Following", color_image)
 
     def run(self):
