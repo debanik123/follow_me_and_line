@@ -205,10 +205,17 @@ class Ui_MainWindow(object):
         self.robot_state_signal.setIconSize(QtCore.QSize(30, 30))
         self.robot_state_signal.setObjectName("robot_state_signal")
 
+        self.dateTimeLabel = QtWidgets.QLabel(self.centralwidget)
+        self.dateTimeLabel.setGeometry(QtCore.QRect(760, 60, 151, 26))
+        self.dateTimeLabel.setObjectName("dateTimeLabel")
 
-        self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.centralwidget)
-        self.dateTimeEdit.setGeometry(QtCore.QRect(760, 60, 151, 26))
-        self.dateTimeEdit.setObjectName("dateTimeEdit")
+        self.update_date_time()
+
+        self.timer = QtCore.QTimer(MainWindow)
+        self.timer.timeout.connect(self.update_date_time)
+        self.timer.start(1000)
+        
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 918, 22))
@@ -238,7 +245,9 @@ class Ui_MainWindow(object):
         self.robot_state.setText(self._translate("MainWindow", "Robot status : unknown"))
         self.start_station.setText(self._translate("MainWindow", "Start Station : "))
         self.end_station.setText(self._translate("MainWindow", "End Station : "))
+        # self.dateTimeEdit.setText((self._translate("MainWindow", "date and time")))
         self.battery.setText(self._translate("MainWindow", "..."))
+        
     
     def follow_me_callback(self):
         # print("Follow Me button clicked")
@@ -333,6 +342,11 @@ class Ui_MainWindow(object):
         painter.setPen(pen)
         painter.drawRect(0, 0, rectangle.width(), rectangle.height())
         painter.end()
+    
+    def update_date_time(self):
+        current_datetime = QtCore.QDateTime.currentDateTime()
+        self.dateTimeLabel.setText(current_datetime.toString("yyyy-MM-dd hh:mm:ss"))
+
             
 
 
