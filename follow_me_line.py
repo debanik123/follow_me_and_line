@@ -282,18 +282,18 @@ class Ui_MainWindow(object):
         self.update_station()
 
     def update_station(self):
-        if self.start is not None:
+        if self.start is not None and self.start != self.end:
             self.start_station.setText(self._translate("MainWindow", "Start Station : "+str(self.start)))
         else:
             self.start_station.setText(self._translate("MainWindow", "Start Station : "))
         
-        if self.end is not None:
+        if self.end is not None and self.start != self.end:
             self.end_station.setText(self._translate("MainWindow", "End Station : "+str(self.end)))
         else:
             self.end_station.setText(self._translate("MainWindow", "End Station : "))
     
     def go_callback(self):
-        if self.start and self.end:
+        if self.start and self.end and self.start != self.end:
             print("Go to sarting point "+ str(self.start) +" to end point "+ str(self.end))
         else:
             print("Goal points are not Valied")
