@@ -236,6 +236,8 @@ class Ui_MainWindow(object):
         self.go_to_station.setText(self._translate("MainWindow", "Go to Station"))
         self.push_go.setText(self._translate("MainWindow", "Go"))
         self.robot_state.setText(self._translate("MainWindow", "Robot status : unknown"))
+        self.start_station.setText(self._translate("MainWindow", "Start Station : "))
+        self.end_station.setText(self._translate("MainWindow", "End Station : "))
         self.battery.setText(self._translate("MainWindow", "..."))
     
     def follow_me_callback(self):
