@@ -192,6 +192,19 @@ class Ui_MainWindow(object):
         self.emergency_stop.setObjectName("emergency_stop")
         self.emergency_stop.clicked.connect(self.emergency_stop_callback)
 
+        self.robot_state = QtWidgets.QLabel(self.centralwidget)
+        self.robot_state.setGeometry(QtCore.QRect(140, 430, 171, 31))
+        self.robot_state.setObjectName("robot_state")
+        self.robot_state_signal = QtWidgets.QToolButton(self.centralwidget)
+        self.robot_state_signal.setGeometry(QtCore.QRect(310, 420, 51, 51))
+        self.robot_state_signal.setText("")
+        
+        self.icon7 = QtGui.QIcon()
+        self.icon7.addPixmap(QtGui.QPixmap("icons/unknown.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.robot_state_signal.setIcon(self.icon7)
+        self.robot_state_signal.setIconSize(QtCore.QSize(30, 30))
+        self.robot_state_signal.setObjectName("robot_state_signal")
+
 
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.centralwidget)
         self.dateTimeEdit.setGeometry(QtCore.QRect(760, 60, 151, 26))
@@ -222,7 +235,7 @@ class Ui_MainWindow(object):
         self.push_four.setText(self._translate("MainWindow", "four"))
         self.go_to_station.setText(self._translate("MainWindow", "Go to Station"))
         self.push_go.setText(self._translate("MainWindow", "Go"))
-        
+        self.robot_state.setText(self._translate("MainWindow", "Robot status : unknown"))
         self.battery.setText(self._translate("MainWindow", "..."))
     
     def follow_me_callback(self):
