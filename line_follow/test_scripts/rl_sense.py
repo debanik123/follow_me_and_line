@@ -87,25 +87,31 @@ class YellowLineFollower(Node):
 
         for contour in contours:
             bounding_box = cv2.boundingRect(contour)
-            cv2.rectangle(color_image, bounding_box, (0, 255, 0), 2)
-            center= (bounding_box[0] + bounding_box[2] // 2, bounding_box[1] + bounding_box[3] // 2)
+            contour_area = cv2.contourArea(contour)
+            print(contour_area)
+            # Set a threshold for the minimum contour area
+            min_contour_area_threshold = 1000
 
-            min_cm_pix, min_cm_distance = self.cluster_create(color_image, center[0], center[1], depth_frame, color_=(255, 0, 255))
-            min_img_pix, min_Im_distance = self.cluster_create(color_image, im_midpoint[0], im_midpoint[1], depth_frame, color_=(0, 255, 255))
+            if contour_area > min_contour_area_threshold:
+                cv2.rectangle(color_image, bounding_box, (0, 255, 0), 2)
+                center= (bounding_box[0] + bounding_box[2] // 2, bounding_box[1] + bounding_box[3] // 2)
 
-            linear_velocity, angular_velocity, current_distance = pvg_rs.generate_velocity_from_pixels(min_img_pix, min_cm_pix)
-            print("Linear Velocity:", linear_velocity, "Angular Velocity:", angular_velocity)
+                min_cm_pix, min_cm_distance = self.cluster_create(color_image, center[0], center[1], depth_frame, color_=(255, 0, 255))
+                min_img_pix, min_Im_distance = self.cluster_create(color_image, im_midpoint[0], im_midpoint[1], depth_frame, color_=(0, 255, 255))
 
-            self.cmd_vel(linear_velocity, angular_velocity)
-            
-            linear_x_str = "{:.3f}".format(linear_velocity)
-            angular_z_str = "{:.3f}".format(angular_velocity)
-            curr_dis_str = "{:.4f}".format(current_distance)
+                linear_velocity, angular_velocity, current_distance = pvg_rs.generate_velocity_from_pixels(min_img_pix, min_cm_pix)
+                print("Linear Velocity:", linear_velocity, "Angular Velocity:", angular_velocity)
 
-            cv2.putText(color_image, "linear_x: "+ linear_x_str +" angular_z: " + angular_z_str,(min_cm_pix[0], min_cm_pix[0]),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
-            cv2.putText(color_image, "curr_dis: "+str(curr_dis_str),(min_cm_pix[0], min_cm_pix[0]-80),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
+                self.cmd_vel(linear_velocity, angular_velocity)
+                
+                linear_x_str = "{:.3f}".format(linear_velocity)
+                angular_z_str = "{:.3f}".format(angular_velocity)
+                curr_dis_str = "{:.4f}".format(current_distance)
 
-
+                cv2.putText(color_image, "linear_x: "+ linear_x_str +" angular_z: " + angular_z_str,(min_cm_pix[0], min_cm_pix[0]),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
+                cv2.putText(color_image, "curr_dis: "+str(curr_dis_str),(min_cm_pix[0], min_cm_pix[0]-80),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
+            # else:
+            #     self.stop_robot()
         cv2.imshow("Yellow Line Following", color_image)
 
     def run(self):
