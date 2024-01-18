@@ -117,8 +117,9 @@ class Ui_MainWindow(object):
         self.push_go.setChecked(False)
         self.push_go.setAutoRepeat(False)
         self.push_go.setObjectName("push_go")
-        self.push_go.setStyleSheet(self.green_text)
+        self.push_go.setStyleSheet("background-color: gray; color: blue;")
         self.push_go.clicked.connect(self.go_callback)
+        
 
         self.station_rectangle = QtWidgets.QLabel(self.centralwidget)
         self.station_rectangle.setGeometry(QtCore.QRect(560, 380, 220, 31))
@@ -280,6 +281,8 @@ class Ui_MainWindow(object):
         self.start = None
         self.end = None
         self.update_station()
+        self.push_go.setEnabled(True)
+        self.push_go.setStyleSheet("background-color: gray; color: blue;")
 
     def update_station(self):
         if self.start is not None and self.start != self.end:
@@ -295,6 +298,8 @@ class Ui_MainWindow(object):
     def go_callback(self):
         if self.start and self.end and self.start != self.end:
             print("Go to sarting point "+ str(self.start) +" to end point "+ str(self.end))
+            self.push_go.setStyleSheet("background-color: green; color: blue;")
+            self.push_go.setDisabled(True)
         else:
             print("Goal points are not Valied")
     
@@ -313,6 +318,8 @@ class Ui_MainWindow(object):
         painter.setPen(pen)
         painter.drawRect(0, 0, rectangle.width(), rectangle.height())
         painter.end()
+            
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
