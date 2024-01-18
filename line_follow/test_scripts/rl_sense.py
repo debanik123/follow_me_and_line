@@ -36,8 +36,10 @@ class YellowLineFollower(Node):
             return (float(area)/rect_area)
 
     def yellow_thresholding(self, input_image):
-        lower_yellow = np.array([20, 100, 100], dtype=np.uint8)
-        upper_yellow = np.array([30, 255, 255], dtype=np.uint8)
+    #     Scalar lower_yellow(0, 0, 255);  // HSV lower limit for yellow
+    # Scalar upper_yellow(255, 135, 255);  // HSV upper limit for yellow
+        lower_yellow = np.array([0, 50, 115], dtype=np.uint8)
+        upper_yellow = np.array([255, 255, 255], dtype=np.uint8)
         hsv = cv2.cvtColor(input_image, cv2.COLOR_BGR2HSV)
         yellow_mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
         return yellow_mask
@@ -76,7 +78,7 @@ class YellowLineFollower(Node):
 
         yellow_thresholded = self.yellow_thresholding(color_image)
         yellow_thresholded = cv2.erode(yellow_thresholded, None, iterations=2)
-        yellow_thresholded = cv2.dilate(yellow_thresholded, None, iterations=2)
+        # yellow_thresholded = cv2.dilate(yellow_thresholded, None, iterations=2)
         contours, _ = cv2.findContours(yellow_thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         im_midpoint = (int(color_image.shape[1] // 2.0), int(color_image.shape[0] // 2.0))
         pix_distances = []

@@ -52,6 +52,7 @@ class YOLOv8TrackingNode(Node):
         cmd_vel_msg.angular.y = 0.0
         cmd_vel_msg.angular.z = a_v
         self.cmd_vel_pub.publish(cmd_vel_msg)
+        
     
     def cluster_create(self, frame, x,y, depth_frame, window_size=15, color_=(255, 0, 255)):
         hm_distances = []
