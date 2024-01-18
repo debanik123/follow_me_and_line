@@ -104,7 +104,7 @@ class YellowLineFollower(Node):
             contour_area = cv2.contourArea(contour)
             # print(contour_area)
             # Set a threshold for the minimum contour area
-            min_contour_area_threshold = 1000
+            min_contour_area_threshold = 4000
 
             if contour_area > min_contour_area_threshold:
                 cv2.rectangle(color_image, bounding_box, (0, 255, 0), 2)
@@ -162,7 +162,7 @@ class YellowLineFollower(Node):
         cmd_vel_msg.linear.z = 0.0
         cmd_vel_msg.angular.x = 0.0
         cmd_vel_msg.angular.y = 0.0
-        cmd_vel_msg.angular.z = 0.7
+        cmd_vel_msg.angular.z = 1.3
         self.cmd_vel_pub.publish(cmd_vel_msg)
     
     def cmd_vel(self, l_v, a_v):
