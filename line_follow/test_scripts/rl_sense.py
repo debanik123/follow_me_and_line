@@ -13,8 +13,8 @@ class YellowLineFollower(Node):
         self.pipe = rs.pipeline()
         self.cfg = rs.config()
         self.color_map = rs.colorizer()
-        self.cfg.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-        self.cfg.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.cfg.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
+        self.cfg.enable_stream(rs.stream.depth, 1280, 720, rs.format.z16, 30)
         self.desiredDistance = 1.2
         self.speed_= 0.85
         self.vel_max = 1.0
@@ -168,7 +168,7 @@ class YellowLineFollower(Node):
     def cmd_vel(self, l_v, a_v):
         print("Linear Velocity:", l_v, "Angular Velocity:", a_v)
         cmd_vel_msg = Twist()
-        cmd_vel_msg.linear.x = l_v
+        cmd_vel_msg.linear.x = 1.2
         cmd_vel_msg.linear.y = 0.0
         cmd_vel_msg.linear.z = 0.0
         cmd_vel_msg.angular.x = 0.0
