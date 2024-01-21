@@ -99,16 +99,16 @@ class YellowLineFollower(Node):
         centers = []
         pvg_rs = PixelToVelocityGenerator_rs(depth_frame)
 
-        for contour in contours:
-            bounding_box = cv2.boundingRect(contour)
-            contour_area = cv2.contourArea(contour)
-            # print(contour_area)
-            # Set a threshold for the minimum contour area
-            min_contour_area_threshold = 4000
+        if contours:
+            largest_contour = max(contours, key=cv2.contourArea)
+            M = cv2.moments(largest_contour)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                bounding_box = cv2.boundingRect(largest_contour)
 
-            if contour_area > min_contour_area_threshold:
                 cv2.rectangle(color_image, bounding_box, (0, 255, 0), 2)
-                center= (bounding_box[0] + bounding_box[2] // 2, bounding_box[1] + bounding_box[3] // 2)
+                center= (cx, cy)
 
                 min_cm_pix, min_cm_distance = self.cluster_create(color_image, center[0], center[1], depth_frame, color_=(255, 0, 255))
                 min_img_pix, min_Im_distance = self.cluster_create(color_image, im_midpoint[0], im_midpoint[1], depth_frame, color_=(0, 255, 255))
