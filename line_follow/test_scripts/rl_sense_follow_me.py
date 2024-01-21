@@ -127,7 +127,7 @@ class YellowLineFollower(Node):
                 
             
             
-        # cv2.imshow("Yellow Line Following", color_image)
+        cv2.imshow("Yellow Line Following", color_image)
 
     def run(self):
         # cv2.namedWindow("Yellow Line Following")
