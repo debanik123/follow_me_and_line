@@ -15,27 +15,13 @@ def find_shortest_path(start, end, edges):
     except nx.NetworkXNoPath:
         return None  # If there is no path between the nodes
 
-def draw_graph(edges, highlight_path=None, start_node=None, end_node=None):
+def draw_graph(edges, pos, highlight_path=None, start_node=None, end_node=None):
     # Create a graph
     G = nx.Graph()
     G.add_edges_from(edges)
 
     # Layout
-    pos = {
-    1: (0, 0),  # position of node 1
-    2: (1, 0),  # position of node 2
-    3: (2, 1),  # position of node 3
-    4: (2, -1),  # position of node 4
-    8: (3, 2),
-    5: (3, 1),
-    6: (3, 0),
-    7: (3, -1),
-    9: (3, -2),
-    11: (4,1),
-    10: (4,0),
-    12:(4,-1),
-    13: (5, 0)
-    }
+    
 
     # Draw the graph
     nx.draw(G, pos, with_labels=True, node_size=700, node_color="skyblue", font_size=8, font_color="black", font_weight="bold", arrowsize=10)
@@ -76,6 +62,22 @@ edges = [
     (10, 13)
 ]
 
+pos = {
+    1: (0, 0),  # position of node 1
+    2: (1, 0),  # position of node 2
+    3: (2, 1),  # position of node 3
+    4: (2, -1),  # position of node 4
+    8: (3, 2),
+    5: (3, 1),
+    6: (3, 0),
+    7: (3, -1),
+    9: (3, -2),
+    11: (4,1),
+    10: (4,0),
+    12:(4,-1),
+    13: (5, 0)
+    }
+
 start_node = 1
 end_node = 13
 
@@ -88,7 +90,7 @@ if path:
     print(f"Shortest path from {start_node} to {end_node}: {path}")
     junction_nodes = junction_analysis(G, path)
     print("Junction nodes along the path:", junction_nodes)
-    draw_graph(edges, highlight_path=path, start_node=start_node, end_node=end_node)
+    draw_graph(edges,pos, highlight_path=path, start_node=start_node, end_node=end_node)
     
 else:
     print(f"No path found from {start_node} to {end_node}")
