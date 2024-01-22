@@ -18,7 +18,7 @@ pos = {
     1: (0, 0),  # position of node 1
     2: (1, 0),  # position of node 2
     3: (2, 1),  # position of node 3
-    4: (2, -1),  # position of node 4
+    4: (2, -1),  # position of node 4 and so on ..
     8: (3, 2),
     5: (3, 1),
     6: (3, 0),
