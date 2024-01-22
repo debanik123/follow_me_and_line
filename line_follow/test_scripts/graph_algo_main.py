@@ -48,7 +48,7 @@ def junction_analysis(G, path):
         neighbors = set(G.neighbors(current_node))
 
         # Check if the node is a junction
-        if len(neighbors) > 1:
+        if len(neighbors) > 2:
             junction_nodes.append(current_node)
 
     return junction_nodes
