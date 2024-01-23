@@ -10,7 +10,7 @@ def find_shortest_path(start, end, edges):
     except nx.NetworkXNoPath:
         return None
 
-def draw_graph(edges, pos, highlight_path=None, start_node=None, end_node=None):
+def draw_graph(edges, pos, highlight_path=None, start_node=None, end_node=None, vertex_edge_dict=None):
     G = nx.Graph()
     G.add_edges_from(edges)
     nx.draw(G, pos, with_labels=True, node_size=700, node_color="skyblue", font_size=8, font_color="black", font_weight="bold", arrowsize=10)
@@ -23,6 +23,10 @@ def draw_graph(edges, pos, highlight_path=None, start_node=None, end_node=None):
         nx.draw_networkx_nodes(G, pos, nodelist=[start_node], node_color='green', node_size=700)
     if end_node:
         nx.draw_networkx_nodes(G, pos, nodelist=[end_node], node_color='orange', node_size=700)
+    
+        for vertex, info in vertex_edge_dict.items():
+            plt.text(pos[vertex][0], pos[vertex][1], f"{vertex}\n({info})", ha='center', va='center', color='purple', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3'))
+
         
     plt.show()
 
@@ -163,7 +167,7 @@ if path:
 
         
     
-    draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
+    draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
 
 
 else:
