@@ -84,6 +84,19 @@ pos = {
 start_node = 9
 end_node = 1
 
+'''              
+                 Up
+                 |
+                 |
+                 |
+Left ____________|___________ Right
+                 |
+                 |
+                 |
+                 |
+                 Down
+'''
+
 G = nx.Graph()
 G.add_edges_from(edges)
 
