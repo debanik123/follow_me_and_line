@@ -81,20 +81,30 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 9
+start_node = 11
 end_node = 1
 
 '''              
-                 Up
+    (L,U) (U,L)  U   (U,R)  (R,U)
                  |
                  |
                  |
-Left ____________|___________ Right
+   L ____________|___________ R
                  |
                  |
                  |
                  |
-                 Down
+     (L,D) (D,L) D  (D,R)  (R,D)
+
+Up = U
+Down = D
+Left = L
+Right = R
+
+UU = DD = RR = LL = Forward
+UL = RU = DR = LD = Turing Left
+UR = RD = DL = LU =  Turing Right
+
 '''
 
 G = nx.Graph()
@@ -107,13 +117,17 @@ if path:
     junction_nodes = junction_analysis(G, path)
     directions = get_directions(path, pos)
     
+    if junction_nodes:
 
-    for (i, direction) in zip(range(len(path) - 1), directions):
-        current_node = path[i]
-        next_node = path[i + 1]
-        print(f"From {current_node} to {next_node}: {direction}")
-
+        for (i, direction) in zip(range(len(path) - 1), directions):
+            current_node = path[i]
+            next_node = path[i + 1]
+            # if current_node in junction_nodes:
+            print(f"From {current_node} to {next_node}: {direction}")
+    
+    print(directions)
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
+
 
 else:
     print(f"No path found from {start_node} to {end_node}")
