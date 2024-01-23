@@ -81,19 +81,19 @@ def get_node_state(path, idx):
 def concatenate_adjacent_elements(lst):
     return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
 
-def create_vertex_edge_dict(path, moves):
+def create_vertex_edge_dict(path, moves, junction_nodes):
     vertex_edge_dict = {}
 
     for i in range(1, len(path) - 1):
         current_node = path[i]
-        previous_node = path[i - 1]
-        next_node = path[i + 1]
-        edge_direction = moves[i - 1]
-        
-        vertex_edge_dict[current_node] = {
-            'edge_pn': moves[i - 1]+moves[i]   #edge_pn meaning the previous and next edge of the current node
-        }
-
+        if current_node in junction_nodes:
+            previous_node = path[i - 1]
+            next_node = path[i + 1]
+            edge_direction = moves[i - 1]
+            
+            vertex_edge_dict[current_node] = {
+                'edge_pn': moves[i - 1]+moves[i]   #edge_pn meaning the previous and next edge of the current node
+            }
     return vertex_edge_dict
 
 
@@ -121,8 +121,8 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 1
-end_node = 13
+start_node = 13
+end_node = 1
 
 '''              
     (L,U) (U,L)  U   (U,R)  (R,U)
@@ -165,9 +165,10 @@ if path:
         print(concatenated_moves)
 
 
-        vertex_edge_dict = create_vertex_edge_dict(path, moves)
+        vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
         print(vertex_edge_dict)
 
+        
     
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
 
