@@ -38,20 +38,24 @@ def junction_analysis(G, path):
 
     return junction_nodes
 
-def get_relative_position(pos_dict, current_node, next_node):
-    x_diff = pos_dict[next_node][0] - pos_dict[current_node][0]
-    y_diff = pos_dict[next_node][1] - pos_dict[current_node][1]
-
-    if x_diff >= 1 and y_diff == 0:
-        return "forward"
-    elif x_diff == 0 and y_diff >= 1:
-        return "left"
-    elif x_diff == 0 and y_diff <= -1:
-        return "right"
-    elif x_diff <= -1 and y_diff == 0:
-        return "backward"
-    else:
-        return "unknown"
+def get_directions(path, pos):
+    directions = []
+    for i in range(len(path) - 1):
+        current_node = path[i]
+        next_node = path[i + 1]
+        current_pos = pos[current_node]
+        next_pos = pos[next_node]
+        direction = ""
+        if current_pos[0] < next_pos[0]:
+            direction += "right"
+        elif current_pos[0] > next_pos[0]:
+            direction += "left"
+        if current_pos[1] < next_pos[1]:
+            direction += " up"
+        elif current_pos[1] > next_pos[1]:
+            direction += " down"
+        directions.append((current_node, direction))
+    return directions
 
 edges = [
     (1, 2), (2, 3), (2, 4),
@@ -77,8 +81,8 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 1
-end_node = 12
+start_node = 12
+end_node = 1
 
 G = nx.Graph()
 G.add_edges_from(edges)
@@ -88,21 +92,15 @@ path = find_shortest_path(start_node, end_node, edges)
 if path:
     print(f"Shortest path from {start_node} to {end_node}: {path}")
     junction_nodes = junction_analysis(G, path)
+    directions = get_directions(path, pos)
     
-    if junction_nodes:
-        print("Junction nodes along the path:", junction_nodes)
-        
-        for i in range(len(path) - 1):
-            current_node = path[i]
-            next_node = path[i + 1]
-            
-            if current_node in junction_nodes:
-                relative_position = get_relative_position(pos, current_node, next_node)
-                print(f"From {current_node} to {next_node}: {relative_position}")
 
-        draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
-    else:
-        print("No junction nodes along the path.")
+    for (i, direction) in zip(range(len(path) - 1), directions):
+        current_node = path[i]
+        next_node = path[i + 1]
+        print(f"From {current_node} to {next_node}: {direction}")
+
+    draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
 
 else:
     print(f"No path found from {start_node} to {end_node}")
