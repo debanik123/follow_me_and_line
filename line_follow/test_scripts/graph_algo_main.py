@@ -44,11 +44,11 @@ def junction_analysis(G, path):
 
 def get_direction(move):
     if move == "UU" or move == "DD" or move == "RR" or move == "LL":
-        return "Fwd"
+        return "Fwd"  # Forward
     elif move == "UL" or move == "RU" or move == "DR" or move == "LD":
-        return "TuL"
+        return "TuL"  # Turning Left
     elif move == "UR" or move == "RD" or move == "DL" or move == "LU":
-        return "TuR"
+        return "TuR"  # Turning Right
     else:
         return "Unk"
 
@@ -97,7 +97,7 @@ edges = [
     (3, 5), (4, 7), (5, 6),
     (5, 8), (7, 6), (7, 9),
     (6, 10), (10, 11), (10, 12),
-    (10, 13), (14, 13), (15, 13), (16, 14), (17, 15), (18, 14)
+    (10, 13), (14, 13), (15, 13), (13, 16), (17, 15), (18, 15)
 ]
 
 pos = {
@@ -114,10 +114,10 @@ pos = {
     10: (4, 0),
     12: (4, -1),
     13: (5, 0),
-    14: (5, -1),
-    15: (5, 1),
-    16: (5, -2),
-    17: (5, -3),
+    14: (5, 1),
+    15: (5, -1),
+    16: (6, 0),
+    17: (5, -2),
     18: (6, -1)
 
 }
