@@ -159,8 +159,8 @@ if path:
         vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
         print(vertex_edge_dict)
 
-        for vertex, info in vertex_edge_dict.items():
-            print(vertex, info)
+        # for vertex, info in vertex_edge_dict.items():
+        #     print(vertex, info)
 
         
     
