@@ -91,7 +91,7 @@ def create_vertex_edge_dict(path, moves):
         edge_direction = moves[i - 1]
         
         vertex_edge_dict[current_node] = {
-            'edge_pn': [moves[i - 1], moves[i]]
+            'edge_pn': moves[i - 1]+moves[i]
         }
 
     return vertex_edge_dict
