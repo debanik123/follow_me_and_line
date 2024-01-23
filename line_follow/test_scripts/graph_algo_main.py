@@ -38,6 +38,16 @@ def junction_analysis(G, path):
 
     return junction_nodes
 
+def get_direction(move):
+    if move == "UU" or move == "DD" or move == "RR" or move == "LL":
+        return "Forward"
+    elif move == "UL" or move == "RU" or move == "DR" or move == "LD":
+        return "Turing Left"
+    elif move == "UR" or move == "RD" or move == "DL" or move == "LU":
+        return "Turing Right"
+    else:
+        return "Unknown"
+
 def get_directions(path, pos):
     directions = []
     for i in range(len(path) - 1):
@@ -46,16 +56,22 @@ def get_directions(path, pos):
         current_pos = pos[current_node]
         next_pos = pos[next_node]
 
+        move = ""
         if current_pos[0] < next_pos[0]:
-            direction = "right"
+            move += "R"
         elif current_pos[0] > next_pos[0]:
-            direction = "left"
+            move += "L"
         if current_pos[1] < next_pos[1]:
-            direction = " up"
+            move += "U"
         elif current_pos[1] > next_pos[1]:
-            direction = " down"
-        directions.append(direction)
+            move += "D"
+
+        directions.append(move)
+
     return directions
+
+def concatenate_adjacent_elements(lst):
+    return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
 
 edges = [
     (1, 2), (2, 3), (2, 4),
@@ -115,17 +131,26 @@ path = find_shortest_path(start_node, end_node, edges)
 if path:
     print(f"Shortest path from {start_node} to {end_node}: {path}")
     junction_nodes = junction_analysis(G, path)
-    directions = get_directions(path, pos)
+    # directions = get_directions(path, pos)
+    
+    moves = get_directions(path, pos)
+
+    concatenated_moves = concatenate_adjacent_elements(moves)
+    print(concatenated_moves)
+    print(moves)
+
     
     if junction_nodes:
-
-        for (i, direction) in zip(range(len(path) - 1), directions):
+        for (i, move) in zip(range(len(path) - 1), moves):
             current_node = path[i]
-            next_node = path[i + 1]
+            if current_node in junction_nodes:
+                print(" Junction node -------------------> ", current_node)
+            # next_node = path[i + 1]
             # if current_node in junction_nodes:
-            print(f"From {current_node} to {next_node}: {direction}")
+            #     direction = get_direction(move)
+            #     print(f"From {current_node} to {next_node}: {move}")
     
-    print(directions)
+    
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
 
 
