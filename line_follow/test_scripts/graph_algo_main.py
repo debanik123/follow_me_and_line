@@ -117,7 +117,7 @@ pos = {
 }
 
 start_node = 12
-end_node = 9
+end_node = 13
 
 '''              
     (L,U) (U,L)  U   (U,R)  (R,U)
