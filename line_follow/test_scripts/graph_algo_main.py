@@ -70,6 +70,7 @@ def get_directions(path, pos):
 
     return directions
 
+
 def concatenate_adjacent_elements(lst):
     return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
 
@@ -131,24 +132,25 @@ path = find_shortest_path(start_node, end_node, edges)
 if path:
     print(f"Shortest path from {start_node} to {end_node}: {path}")
     junction_nodes = junction_analysis(G, path)
-    # directions = get_directions(path, pos)
-    
     moves = get_directions(path, pos)
 
     concatenated_moves = concatenate_adjacent_elements(moves)
-    print(concatenated_moves)
     print(moves)
+    print(concatenated_moves)
+    
 
     
     if junction_nodes:
         for (i, move) in zip(range(len(path) - 1), moves):
+            previous_node = path[i - 1]
             current_node = path[i]
+            next_node = path[i + 1]
+
             if current_node in junction_nodes:
-                print(" Junction node -------------------> ", current_node)
-            # next_node = path[i + 1]
-            # if current_node in junction_nodes:
-            #     direction = get_direction(move)
-            #     print(f"From {current_node} to {next_node}: {move}")
+                print(f"Junction Node {current_node}:")
+                print(f"Previous Node: {previous_node} with Direction")
+                print(f"Next Node: {next_node} with Direction")
+                print("------------------------")
     
     
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
