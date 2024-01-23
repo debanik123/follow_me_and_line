@@ -81,6 +81,30 @@ def get_node_state(path, idx):
 def concatenate_adjacent_elements(lst):
     return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
 
+def create_vertex_edge_dict(path, moves):
+    vertex_edge_dict = {}
+
+    for i in range(1, len(path) - 1):
+        current_node = path[i]
+        previous_node = path[i - 1]
+        next_node = path[i + 1]
+        edge_direction = moves[i - 1]
+        
+        vertex_edge_dict[current_node] = {
+            'edge_pn': [moves[i - 1], moves[i]]
+        }
+
+    # Add information for the last node in the path
+    vertex_edge_dict[path[-1]] = {
+        'previous_node': path[-2],
+        'edge_direction_previous': moves[-1],
+        'next_node': None,
+        'edge_direction_next': None,
+    }
+
+    return vertex_edge_dict
+
+
 edges = [
     (1, 2), (2, 3), (2, 4),
     (3, 5), (4, 7), (5, 6),
@@ -143,23 +167,15 @@ if path:
 
     if junction_nodes:
         moves = get_directions(path, pos)
-        concatenated_moves = concatenate_adjacent_elements(moves)
         print(moves)
+
+        concatenated_moves = concatenate_adjacent_elements(moves)
         print(concatenated_moves)
-        
-    
-    # if junction_nodes:
-    #     for (i, move) in zip(range(len(path) - 1), moves):
-    #         current_node = path[i]
-    #         if current_node in junction_nodes:
-    #             previous_node = path[i - 1]
-    #             next_node = path[i + 1]
-                # print(f"Junction Node {current_node}:")
-                # print(f"Previous Node: {previous_node} with Direction")
-                # print(f"Next Node: {next_node} with Direction")
-                # state = get_node_state(path, i)
-                # print("------------------------", state)
-    
+
+
+        vertex_edge_dict = create_vertex_edge_dict(path, moves)
+        print(vertex_edge_dict)
+
     
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
 
