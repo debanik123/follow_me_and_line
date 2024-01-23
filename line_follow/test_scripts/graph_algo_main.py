@@ -70,14 +70,6 @@ def get_directions(path, pos):
 
     return directions
 
-def get_node_state(path, idx):
-    previous_node = path[idx - 1]
-    current_node = path[idx]
-    next_node = path[idx + 1]
-
-    
-    return state
-
 def concatenate_adjacent_elements(lst):
     return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
 
