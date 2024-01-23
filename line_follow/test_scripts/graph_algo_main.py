@@ -148,14 +148,12 @@ if path:
     junction_nodes = junction_analysis(G, path)
     print("junction_nodes --> ",junction_nodes)
 
-    
     moves = get_directions(path, pos)
     print(moves)
 
     concatenated_moves = concatenate_adjacent_elements(moves)
     print(concatenated_moves)
-
-
+    
     vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
     print(vertex_edge_dict)
 
