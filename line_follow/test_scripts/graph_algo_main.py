@@ -94,14 +94,6 @@ def create_vertex_edge_dict(path, moves):
             'edge_pn': [moves[i - 1], moves[i]]
         }
 
-    # Add information for the last node in the path
-    vertex_edge_dict[path[-1]] = {
-        'previous_node': path[-2],
-        'edge_direction_previous': moves[-1],
-        'next_node': None,
-        'edge_direction_next': None,
-    }
-
     return vertex_edge_dict
 
 
