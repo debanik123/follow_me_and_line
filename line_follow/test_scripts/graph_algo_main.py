@@ -70,6 +70,13 @@ def get_directions(path, pos):
 
     return directions
 
+def get_node_state(path, idx):
+    previous_node = path[idx - 1]
+    current_node = path[idx]
+    next_node = path[idx + 1]
+
+    
+    return state
 
 def concatenate_adjacent_elements(lst):
     return [lst[i] + lst[i+1] for i in range(len(lst)-1)]
@@ -98,7 +105,7 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 11
+start_node = 13
 end_node = 1
 
 '''              
@@ -132,25 +139,26 @@ path = find_shortest_path(start_node, end_node, edges)
 if path:
     print(f"Shortest path from {start_node} to {end_node}: {path}")
     junction_nodes = junction_analysis(G, path)
-    moves = get_directions(path, pos)
+    print("junction_nodes --> ",junction_nodes)
 
-    concatenated_moves = concatenate_adjacent_elements(moves)
-    print(moves)
-    print(concatenated_moves)
-    
-
-    
     if junction_nodes:
-        for (i, move) in zip(range(len(path) - 1), moves):
-            previous_node = path[i - 1]
-            current_node = path[i]
-            next_node = path[i + 1]
-
-            if current_node in junction_nodes:
-                print(f"Junction Node {current_node}:")
-                print(f"Previous Node: {previous_node} with Direction")
-                print(f"Next Node: {next_node} with Direction")
-                print("------------------------")
+        moves = get_directions(path, pos)
+        concatenated_moves = concatenate_adjacent_elements(moves)
+        print(moves)
+        print(concatenated_moves)
+        
+    
+    # if junction_nodes:
+    #     for (i, move) in zip(range(len(path) - 1), moves):
+    #         current_node = path[i]
+    #         if current_node in junction_nodes:
+    #             previous_node = path[i - 1]
+    #             next_node = path[i + 1]
+                # print(f"Junction Node {current_node}:")
+                # print(f"Previous Node: {previous_node} with Direction")
+                # print(f"Next Node: {next_node} with Direction")
+                # state = get_node_state(path, i)
+                # print("------------------------", state)
     
     
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node)
