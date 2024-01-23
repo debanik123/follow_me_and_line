@@ -83,7 +83,7 @@ def create_vertex_edge_dict(path, moves, junction_nodes):
             next_node = path[i + 1]
             edge_direction = moves[i - 1]
             
-            vertex_edge_dict[current_node] = moves[i - 1]+moves[i]   #edge_pn meaning the previous and next edge of the current node
+            vertex_edge_dict[current_node] = get_direction(moves[i - 1]+moves[i])   #edge_pn meaning the previous and next edge of the current node
             
     return vertex_edge_dict
 
