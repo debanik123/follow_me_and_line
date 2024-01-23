@@ -45,7 +45,7 @@ def get_directions(path, pos):
         next_node = path[i + 1]
         current_pos = pos[current_node]
         next_pos = pos[next_node]
-        
+
         if current_pos[0] < next_pos[0]:
             direction = "right"
         elif current_pos[0] > next_pos[0]:
@@ -81,8 +81,8 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 1
-end_node = 12
+start_node = 9
+end_node = 1
 
 G = nx.Graph()
 G.add_edges_from(edges)
