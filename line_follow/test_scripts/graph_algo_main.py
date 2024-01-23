@@ -161,11 +161,6 @@ if path:
     if junction_nodes:
         vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
         print(vertex_edge_dict)
-
-        # for vertex, info in vertex_edge_dict.items():
-        #     print(vertex, info)
-
-        
     
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
 
