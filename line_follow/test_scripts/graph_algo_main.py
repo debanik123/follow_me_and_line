@@ -45,16 +45,16 @@ def get_directions(path, pos):
         next_node = path[i + 1]
         current_pos = pos[current_node]
         next_pos = pos[next_node]
-        direction = ""
+        
         if current_pos[0] < next_pos[0]:
-            direction += "right"
+            direction = "right"
         elif current_pos[0] > next_pos[0]:
-            direction += "left"
+            direction = "left"
         if current_pos[1] < next_pos[1]:
-            direction += " up"
+            direction = " up"
         elif current_pos[1] > next_pos[1]:
-            direction += " down"
-        directions.append((current_node, direction))
+            direction = " down"
+        directions.append(direction)
     return directions
 
 edges = [
@@ -81,8 +81,8 @@ pos = {
     13: (5, 0)
 }
 
-start_node = 12
-end_node = 1
+start_node = 1
+end_node = 12
 
 G = nx.Graph()
 G.add_edges_from(edges)
