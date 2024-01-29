@@ -122,9 +122,11 @@ class GridPathFinder:
 
                 if junction_nodes:
                     vertex_edge_dict = self.create_vertex_edge_dict(path, moves, junction_nodes)
-                    print(vertex_edge_dict)
-
-                self.draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
+                    # print(vertex_edge_dict)
+                    # self.draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
+                    return vertex_edge_dict
+                else:
+                    return {}
 
             else:
                 print(f"No path found from {start_node} to {end_node}")
@@ -153,7 +155,9 @@ def main():
     end_node = 4
 
     grid_path_finder = GridPathFinder(pos, edges)
-    grid_path_finder.grid_path(start_node, end_node)
+    path_dict = grid_path_finder.grid_path(start_node, end_node)
+    print(path_dict)
+
 
 if __name__ == "__main__":
     main()
