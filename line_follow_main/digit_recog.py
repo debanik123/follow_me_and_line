@@ -30,13 +30,26 @@ try:
         # text = result[0][1]
         # print(text)
 
-        # Display the original frame
-        cv2.imshow('Original Frame', color_image)
+        
 
         # # Display OCR results
         for detection in result:
-            text = detection
-            print(f"Detected text: {text[1]}")
+            try:
+
+                text = detection
+                if(text[2]>0.96):
+                    (rectangle_coords, text, confidence) = text
+                    print(rectangle_coords)
+                    cv2.rectangle(color_image, rectangle_coords[0], rectangle_coords[2], (255, 255, 0) , 4)
+
+                    font = cv2.FONT_HERSHEY_SIMPLEX
+                    cv2.putText(color_image, f"{text} (Confidence: {confidence:.2f})", rectangle_coords[0], font, 1.0, (0, 0, 255), 1, cv2.LINE_AA)
+
+                    print(f"Detected text: {text}")
+            except:
+                pass
+
+        cv2.imshow('Original Frame', color_image)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
