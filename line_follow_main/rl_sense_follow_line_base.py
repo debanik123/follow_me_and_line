@@ -100,7 +100,7 @@ class GridPathFinder:
     def grid_path(self, start_node, end_node):
         pos = self.pos
         edges = self.edges
-        
+
         if start_node in pos and end_node in pos:
             print(f"Start node {start_node} and end node {end_node} exist in the dictionary keys.")
 
@@ -134,20 +134,28 @@ class GridPathFinder:
 
 
 
-edges = [
-    (1, 2), (2, 3), (2, 4)
-]
-
-pos = {
-    1: (0, 0),
-    2: (1, 0),
-    4: (1, -1),
-    3: (2, 0)
-    
-}
-
-start_node = 1
-end_node = 3
 
 
-self.grid_path(start_node, end_node, edges, pos)
+
+def main():
+    edges = [
+        (1, 2), (2, 3), (2, 4)
+    ]
+
+    pos = {
+        1: (0, 0),
+        2: (1, 0),
+        4: (1, -1),
+        3: (2, 0)  
+    }
+
+    start_node = 1
+    end_node = 3
+
+    grid_path_finder = GridPathFinder(pos, edges)
+    grid_path_finder.grid_path(start_node, end_node)
+
+if __name__ == "__main__":
+    main()
+
+
