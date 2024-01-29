@@ -138,7 +138,7 @@ pos = {
 }
 
 start_node = 1
-end_node = 4
+end_node = 3
 
 
 grid_path(start_node, end_node, edges, pos)
