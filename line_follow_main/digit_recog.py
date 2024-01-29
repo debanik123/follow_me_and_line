@@ -10,7 +10,7 @@ reader = Reader(['en'])
 # Configure RealSense pipeline
 pipeline = rs.pipeline()
 config = rs.config()
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 pipeline.start(config)
 
 try:
@@ -36,17 +36,18 @@ try:
         for detection in result:
             try:
                 text = detection
-                if(text[2]>0.96):
-                    (rectangle_coords, text, confidence) = text
-                    print(rectangle_coords)
-                    cv2.rectangle(color_image, rectangle_coords[0], rectangle_coords[2], (255, 255, 0) , 4)
+                # if(text[2]>0.85):
+                (rectangle_coords, text, confidence) = text
+                print(rectangle_coords)
+                cv2.rectangle(color_image, rectangle_coords[0], rectangle_coords[2], (255, 255, 0) , 4)
 
-                    font = cv2.FONT_HERSHEY_SIMPLEX
-                    cv2.putText(color_image, f"{text} (Confidence: {confidence:.2f})", rectangle_coords[0], font, 1.0, (0, 0, 255), 1, cv2.LINE_AA)
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                cv2.putText(color_image, f"{text} (Confidence: {confidence:.2f})", rectangle_coords[0], font, 1.0, (0, 0, 255), 1, cv2.LINE_AA)
 
-                    print(f"Detected text: {text}")
+                print(f"Detected text: {text}")
             except:
                 pass
+
 
         cv2.imshow('Original Frame', color_image)
 
