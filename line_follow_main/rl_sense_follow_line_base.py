@@ -150,7 +150,7 @@ def main():
     }
 
     start_node = 1
-    end_node = 3
+    end_node = 4
 
     grid_path_finder = GridPathFinder(pos, edges)
     grid_path_finder.grid_path(start_node, end_node)
