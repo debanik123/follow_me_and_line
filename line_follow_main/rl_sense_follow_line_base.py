@@ -97,7 +97,10 @@ class GridPathFinder:
                 
         return vertex_edge_dict
 
-    def grid_path(self, start_node, end_node, edges, pos):
+    def grid_path(self, start_node, end_node):
+        pos = self.pos
+        edges = self.edges
+
         if start_node in pos and end_node in pos:
             print(f"Start node {start_node} and end node {end_node} exist in the dictionary keys.")
 
