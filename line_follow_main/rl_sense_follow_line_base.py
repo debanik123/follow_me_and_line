@@ -122,7 +122,7 @@ pos = {
 
 }
 
-start_node = 1
+start_node = 4
 end_node = 16
 
 '''              
