@@ -93,83 +93,48 @@ def create_vertex_edge_dict(path, moves, junction_nodes):
 
 
 edges = [
-    (1, 2), (2, 3), (2, 4),
-    (3, 5), (4, 7), (5, 6),
-    (5, 8), (7, 6), (7, 9),
-    (6, 10), (10, 11), (10, 12),
-    (10, 13), (14, 13), (15, 13), (13, 16), (17, 15), (18, 15)
+    (1, 2), (2, 3), (2, 4)
 ]
 
 pos = {
     1: (0, 0),
     2: (1, 0),
-    3: (1, 1),
     4: (1, -1),
-    8: (3, 2),
-    5: (3, 1),
-    6: (3, 0),
-    7: (3, -1),
-    9: (3, -2),
-    11: (4, 1),
-    10: (4, 0),
-    12: (4, -1),
-    13: (5, 0),
-    14: (5, 1),
-    15: (5, -1),
-    16: (6, 0),
-    17: (5, -2),
-    18: (6, -1)
-
+    3: (2, 0)
+    
 }
 
-start_node = 4
-end_node = 16
+start_node = 1
+end_node = 4
 
-'''              
-    (L,U) (U,L)  U   (U,R)  (R,U)
-                 |
-                 |
-                 |
-   L ____________|___________ R
-                 |
-                 |
-                 |
-                 |
-     (L,D) (D,L) D  (D,R)  (R,D)
 
-Up = U
-Down = D
-Left = L
-Right = R
+if start_node in pos and end_node in pos:
+    print(f"Start node {start_node} and end node {end_node} exist in the dictionary keys.")
 
-UU = DD = RR = LL = Forward
-UL = RU = DR = LD = Turing Left
-UR = RD = DL = LU =  Turing Right
+    G = nx.Graph()
+    G.add_edges_from(edges)
 
-'''
+    path = find_shortest_path(start_node, end_node, edges)
 
-G = nx.Graph()
-G.add_edges_from(edges)
+    if path:
+        print(f"Shortest path from {start_node} to {end_node}: {path}")
+        junction_nodes = junction_analysis(G, path)
+        print("junction_nodes --> ",junction_nodes)
 
-path = find_shortest_path(start_node, end_node, edges)
+        moves = get_directions(path, pos)
+        print(moves)
 
-if path:
-    print(f"Shortest path from {start_node} to {end_node}: {path}")
-    junction_nodes = junction_analysis(G, path)
-    print("junction_nodes --> ",junction_nodes)
+        concatenated_moves = concatenate_adjacent_elements(moves)
+        print(concatenated_moves)
 
-    moves = get_directions(path, pos)
-    print(moves)
+        if junction_nodes:
+            vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
+            print(vertex_edge_dict)
 
-    concatenated_moves = concatenate_adjacent_elements(moves)
-    print(concatenated_moves)
+        # draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
 
-    if junction_nodes:
-        vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
-        print(vertex_edge_dict)
-    
-    draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
-
+    else:
+        print(f"No path found from {start_node} to {end_node}")
 
 else:
-    print(f"No path found from {start_node} to {end_node}")
+     print(f"Nodes do not exist in the dictionary keys.")
