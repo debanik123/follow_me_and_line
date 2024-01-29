@@ -35,7 +35,6 @@ try:
         # # Display OCR results
         for detection in result:
             try:
-
                 text = detection
                 if(text[2]>0.96):
                     (rectangle_coords, text, confidence) = text
