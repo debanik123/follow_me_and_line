@@ -122,8 +122,8 @@ pos = {
 
 }
 
-start_node = 4
-end_node = 16
+start_node = 14
+end_node = 1
 
 '''              
     (L,U) (U,L)  U   (U,R)  (R,U)
