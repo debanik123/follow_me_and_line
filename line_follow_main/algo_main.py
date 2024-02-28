@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import json
 
 def find_shortest_path(start, end, edges):
     G = nx.Graph()
@@ -92,66 +93,25 @@ def create_vertex_edge_dict(path, moves, junction_nodes):
     return vertex_edge_dict
 
 
-edges = [
-    (1, 2), (2, 3), (2, 4),
-    (3, 5), (4, 7), (5, 6),
-    (5, 8), (7, 6), (7, 9),
-    (6, 10), (10, 11), (10, 12),
-    (10, 13), (14, 13), (15, 13), (13, 16), (17, 15), (18, 15)
-]
+def load_graph_data(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+        edges = [(edge[0], edge[1]) for edge in data['edges']]
+        pos = {int(key): tuple(value) for key, value in data['poses'].items()}
+        start_node = data['start_node']
+        end_node = data['end_node']
+    return edges, pos, start_node, end_node
 
-pos = {
-    1: (0, 0),
-    2: (1, 0),
-    3: (1, 1),
-    4: (1, -1),
-    8: (3, 2),
-    5: (3, 1),
-    6: (3, 0),
-    7: (3, -1),
-    9: (3, -2),
-    11: (4, 1),
-    10: (4, 0),
-    12: (4, -1),
-    13: (5, 0),
-    14: (5, 1),
-    15: (5, -1),
-    16: (6, 0),
-    17: (5, -2),
-    18: (6, -1)
+# Specify the path to your JSON file
+json_file_path = '/home/dj/follow_me_and_line/line_follow_main/config/vtx_edg.json'
 
-}
-
-start_node = 1
-end_node = 16
+# Load graph data from the JSON file
+edges, pos, start_node, end_node = load_graph_data(json_file_path)
 
 print("Edges:", edges)
 print("Pos:", pos)
 print("Start Node:", start_node)
 print("End Node:", end_node)
-
-'''              
-    (L,U) (U,L)  U   (U,R)  (R,U)
-                 |
-                 |
-                 |
-   L ____________|___________ R
-                 |
-                 |
-                 |
-                 |
-     (L,D) (D,L) D  (D,R)  (R,D)
-
-Up = U
-Down = D
-Left = L
-Right = R
-
-UU = DD = RR = LL = Forward
-UL = RU = DR = LD = Turing Left
-UR = RD = DL = LU =  Turing Right
-
-'''
 
 G = nx.Graph()
 G.add_edges_from(edges)
