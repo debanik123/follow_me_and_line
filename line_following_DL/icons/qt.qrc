@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>unknown.png</file>
+    <file>red_icon.jpg</file>
+    <file>green_signal.png</file>
+    <file>batterycharge_icon.png</file>
+    <file>blue_signal.png</file>
+    <file>green_signal.png</file>
+    <file>red_signal.png</file>
+    <file>yellow_icon.jpg</file>
+    <file>battery-status.png</file>
+    <file>reset.png</file>
+    <file>reset.jpeg</file>
+    <file>batterycharge_icon.png</file>
+    <file>resume.png</file>
+    <file>charging_icon.png</file>
+    <file>power-off.png</file>
+    <file>stop-button.png</file>
+    <file>obstracle_no.png</file>
+    <file>obstracle_yes.png</file>
+    <file>wonbot_2_인쇄용-02.png</file>
+  </qresource>
+</RCC>
