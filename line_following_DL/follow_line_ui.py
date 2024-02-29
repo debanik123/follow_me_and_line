@@ -128,9 +128,15 @@ class Ui_MainWindow(object):
         self.emergency_stop.setIconSize(QtCore.QSize(40, 40))
         self.emergency_stop.setObjectName("emergency_stop")
 
-        self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.centralwidget)
-        self.dateTimeEdit.setGeometry(QtCore.QRect(760, 60, 151, 26))
-        self.dateTimeEdit.setObjectName("dateTimeEdit")
+        self.dateTimeLabel = QtWidgets.QLabel(self.centralwidget)
+        self.dateTimeLabel.setGeometry(QtCore.QRect(760, 60, 151, 26))
+        self.dateTimeLabel.setObjectName("dateTimeLabel")
+
+        self.update_date_time()
+
+        self.timer = QtCore.QTimer(MainWindow)
+        self.timer.timeout.connect(self.update_date_time)
+        self.timer.start(1000)
 
         self.push_1 = QtWidgets.QPushButton(self.centralwidget)
         self.push_1.setGeometry(QtCore.QRect(20, 210, 89, 51))
@@ -294,6 +300,11 @@ class Ui_MainWindow(object):
     def resume_callback(self):
         self.stop = 0
         print("Resume The robot")
+    
+    def update_date_time(self):
+        current_datetime = QtCore.QDateTime.currentDateTime()
+        self.dateTimeLabel.setText(current_datetime.toString("yyyy-MM-dd hh:mm:ss"))
+
 
     
     def push_1_callback(self):
