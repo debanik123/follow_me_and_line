@@ -10,6 +10,8 @@ class GraphAnalyzer:
         self.G = nx.Graph()
         self.G.add_edges_from(self.edges)
 
+        self.reverse = False
+
     def find_shortest_path(self):
         try:
             shortest_path = nx.shortest_path(self.G, source=self.start_node, target=self.end_node)
@@ -47,14 +49,26 @@ class GraphAnalyzer:
         return junction_nodes
 
     def get_direction(self, move):
-        if move == "UU" or move == "DD" or move == "RR" or move == "LL":
-            return "Fwd"  # Forward
-        elif move == "UL" or move == "RU" or move == "DR" or move == "LD":
-            return "TuL"  # Turning Left
-        elif move == "UR" or move == "RD" or move == "DL" or move == "LU":
-            return "TuR"  # Turning Right
+        
+        if self.reverse:
+            if move == "UU" or move == "DD" or move == "RR" or move == "LL":
+                return "Fwd"  # Forward
+            elif move == "UL" or move == "RU" or move == "DR" or move == "LD":
+                return "TuR"  # Turning Left
+            elif move == "UR" or move == "RD" or move == "DL" or move == "LU":
+                return "TuL"  # Turning Right
+            else:
+                return "Unk"
+
         else:
-            return "Unk"
+            if move == "UU" or move == "DD" or move == "RR" or move == "LL":
+                return "Fwd"  # Forward
+            elif move == "UL" or move == "RU" or move == "DR" or move == "LD":
+                return "TuL"  # Turning Left
+            elif move == "UR" or move == "RD" or move == "DL" or move == "LU":
+                return "TuR"  # Turning Right
+            else:
+                return "Unk"
 
     def get_directions(self, path):
         directions = []
