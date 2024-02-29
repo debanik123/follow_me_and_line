@@ -111,8 +111,7 @@ class GraphAnalyzer:
             start_node = data['start_node']
             end_node = data['end_node']
         return edges, pos, start_node, end_node
-
-
+    
 if __name__ == "__main__":
     # Create an object of the GraphAnalyzer class
     graph_analyzer = GraphAnalyzer('config/vtx_edg.json')
