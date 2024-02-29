@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from graph_motion_planning import GraphAnalyzer  
+import threading
 
 class Ui_MainWindow(object):
     def __init__(self):
@@ -273,6 +274,8 @@ class Ui_MainWindow(object):
         self.update_station()
         self.push_go.setEnabled(True)
         self.push_go.setStyleSheet("background-color: gray; color: blue;")
+        draw_thread = threading.Thread(target=self.graph_analyzer.draw_graph, kwargs={'highlight_path': None, 'vertex_edge_dict': None})
+        draw_thread.start()
 
     def update_station(self):
         if self.start is not None and self.start != self.end:
@@ -288,6 +291,7 @@ class Ui_MainWindow(object):
     def go_callback(self):
         if self.start and self.end and self.start != self.end:
             print("Go to sarting point "+ str(self.start) +" to end point "+ str(self.end))
+            self.path_list(self.start, self.end)
             self.push_go.setStyleSheet("background-color: green; color: blue;")
             self.push_go.setDisabled(True)
         else:
@@ -446,6 +450,48 @@ class Ui_MainWindow(object):
             self.end = None
 
         self.update_station()
+
+    def path_list(self, start, end):
+        start_node = start
+        end_node = end
+        self.graph_analyzer = GraphAnalyzer('config/vtx_edg.json', start_node, end_node)
+
+        # Use the methods of the object
+        path = self.graph_analyzer.find_shortest_path()
+
+        if path:
+            print(f"Shortest path from {self.graph_analyzer.start_node} to {self.graph_analyzer.end_node}: {path}")
+            junction_nodes = self.graph_analyzer.junction_analysis(path)
+            print("Junction nodes -->", junction_nodes)
+
+            moves = self.graph_analyzer.get_directions(path)
+            print("Moves:", moves)
+
+            concatenated_moves = self.graph_analyzer.concatenate_adjacent_elements(moves)
+            print("Concatenated Moves:", concatenated_moves)
+
+            if junction_nodes:
+                if end_node not in junction_nodes:
+                    vertex_edge_dict = self.graph_analyzer.create_vertex_edge_dict(path, moves, junction_nodes)
+                    print("Vertex Edge Dict:", vertex_edge_dict)
+                    # self.graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=vertex_edge_dict)
+                    draw_thread = threading.Thread(target=self.graph_analyzer.draw_graph, kwargs={'highlight_path': path, 'vertex_edge_dict': vertex_edge_dict})
+                    draw_thread.start()
+                    
+                else:
+                    print("000, Hi, I am executed")
+                    # self.graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=None)
+                    draw_thread = threading.Thread(target=self.graph_analyzer.draw_graph, kwargs={'highlight_path': path, 'vertex_edge_dict': None})
+                    draw_thread.start()
+            else:
+                print("111, Hi, I am executed")
+                # self.graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=None)
+                draw_thread = threading.Thread(target=self.graph_analyzer.draw_graph, kwargs={'highlight_path': path, 'vertex_edge_dict': None})
+                draw_thread.start()
+
+        else:
+            print(f"No path found from {self.graph_analyzer.start_node} to {self.graph_analyzer.end_node}")
+
 
 
 if __name__ == "__main__":
