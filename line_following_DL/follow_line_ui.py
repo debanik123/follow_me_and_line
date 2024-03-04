@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from graph_motion_planning import GraphAnalyzer  
 import threading
+import pandas as pd
 
 class Ui_MainWindow(object):
     def __init__(self):
@@ -308,7 +309,7 @@ class Ui_MainWindow(object):
     def update_date_time(self):
         current_datetime = QtCore.QDateTime.currentDateTime()
         self.dateTimeLabel.setText(current_datetime.toString("yyyy-MM-dd hh:mm:ss"))
-        
+
     def push_1_callback(self):
         if self.start:
             self.end = 1
@@ -448,6 +449,25 @@ class Ui_MainWindow(object):
             self.end = None
 
         self.update_station()
+    
+    def create_node_job_dataframe(self, path, vertex_edge_dict, start_node, end_node):
+        # Remove string elements from the path
+        path_new = [node for node in path if isinstance(node, int)]
+
+        # Create a DataFrame
+        df_data = {'Node': path_new, 'Job': ''}
+        df = pd.DataFrame(df_data)
+
+        # Update the 'Job' column with information from vertex_edge_dict
+        for node, job in vertex_edge_dict.items():
+            df.loc[df['Node'] == node, 'Job'] = job
+
+        # Update the 'Job' column based on the start and end nodes
+        df.loc[df['Node'] == start_node, 'Job'] = 'Start'
+        df.loc[df['Node'] == end_node, 'Job'] = 'Goal'
+
+        return df
+
 
     def path_list(self, start, end):
         start_node = start
@@ -472,6 +492,8 @@ class Ui_MainWindow(object):
                 if end_node not in junction_nodes:
                     vertex_edge_dict = self.graph_analyzer.create_vertex_edge_dict(path, moves, junction_nodes)
                     print("Vertex Edge Dict:", vertex_edge_dict)
+                    df = self.create_node_job_dataframe(path, vertex_edge_dict, start_node, end_node)
+                    print(df)
                     # self.graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=vertex_edge_dict)
                     draw_thread = threading.Thread(target=self.graph_analyzer.draw_graph, kwargs={'highlight_path': path, 'vertex_edge_dict': vertex_edge_dict})
                     draw_thread.start()
