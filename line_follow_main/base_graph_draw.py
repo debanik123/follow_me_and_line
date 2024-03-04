@@ -116,7 +116,7 @@ pos = {
 }
 
 start_node = 1
-end_node = 10
+end_node = 9
 
 print("Edges:", edges)
 print("Pos:", pos)
