@@ -1,9 +1,21 @@
 from graph_motion_planning import GraphAnalyzer
+import pandas as pd
+
+def create_node_job_dataframe(path, vertex_edge_dict, start_node, end_node):
+    path_new = [node for node in path if isinstance(node, int)]
+    df_data = {'Node': path_new, 'Job': ''}
+    df = pd.DataFrame(df_data)
+    for node, job in vertex_edge_dict.items():
+        df.loc[df['Node'] == node, 'Job'] = job
+    df.loc[df['Node'] == start_node, 'Job'] = 'Start'
+    df.loc[df['Node'] == end_node, 'Job'] = 'Goal'
+    
+    return df
 
 if __name__ == "__main__":
     # Create an object of the GraphAnalyzer class
     start_node = 1
-    end_node = 9
+    end_node = 4
     graph_analyzer = GraphAnalyzer('config/vtx_edg.json', start_node, end_node)
 
     # Use the methods of the object
@@ -24,6 +36,8 @@ if __name__ == "__main__":
             if end_node not in junction_nodes:
                 vertex_edge_dict = graph_analyzer.create_vertex_edge_dict(path, moves, junction_nodes)
                 print("Vertex Edge Dict:", vertex_edge_dict)
+                df = create_node_job_dataframe(path, vertex_edge_dict, start_node, end_node)
+                print(df)
                 graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=vertex_edge_dict)
             else:
                 print("000, Hi, I am executed")
