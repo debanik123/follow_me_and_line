@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def find_shortest_path(start, end, edges):
     G = nx.Graph()
@@ -115,7 +116,7 @@ pos = {
 }
 
 start_node = 1
-end_node = 9
+end_node = 7
 
 print("Edges:", edges)
 print("Pos:", pos)
@@ -164,7 +165,19 @@ if path:
     if junction_nodes:
         vertex_edge_dict = create_vertex_edge_dict(path, moves, junction_nodes)
         print(vertex_edge_dict)
-    
+
+        # Create a DataFrame
+        path_new = [node for node in path if isinstance(node, int)]
+        df_data = {'Node': path_new, 'Job': ''}
+        df = pd.DataFrame(df_data)
+        for node, job in vertex_edge_dict.items():
+            df.loc[df['Node'] == node, 'Job'] = job
+        df.loc[df['Node'] == start_node, 'Job'] = 'Start'
+        df.loc[df['Node'] == end_node, 'Job'] = 'Goal'
+
+        # Print the DataFrame
+        print(df)
+        
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
 
 
