@@ -116,7 +116,7 @@ pos = {
 }
 
 start_node = 1
-end_node = 7
+end_node = 10
 
 print("Edges:", edges)
 print("Pos:", pos)
@@ -177,7 +177,7 @@ if path:
 
         # Print the DataFrame
         print(df)
-        
+
     draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
 
 
