@@ -308,9 +308,7 @@ class Ui_MainWindow(object):
     def update_date_time(self):
         current_datetime = QtCore.QDateTime.currentDateTime()
         self.dateTimeLabel.setText(current_datetime.toString("yyyy-MM-dd hh:mm:ss"))
-
-
-    
+        
     def push_1_callback(self):
         if self.start:
             self.end = 1
