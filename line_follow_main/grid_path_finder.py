@@ -169,7 +169,7 @@ def main():
     }
 
     start_node = 1
-    end_node = 16
+    end_node = 9
 
     grid_path_finder = GridPathFinder(pos, edges)
     path_dict = grid_path_finder.grid_path(start_node, end_node)
