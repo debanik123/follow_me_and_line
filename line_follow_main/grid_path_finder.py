@@ -123,7 +123,7 @@ class GridPathFinder:
                 if junction_nodes:
                     vertex_edge_dict = self.create_vertex_edge_dict(path, moves, junction_nodes)
                     # print(vertex_edge_dict)
-                    # self.draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
+                    self.draw_graph(edges, pos, highlight_path=path, start_node=start_node, end_node=end_node, vertex_edge_dict=vertex_edge_dict)
                     return vertex_edge_dict
                 else:
                     return {}
@@ -141,18 +141,35 @@ class GridPathFinder:
 
 def main():
     edges = [
-        (1, 2), (2, 3), (2, 4)
+        (1, 2), (2, "i1"), (2, 3), (3, 4), (3,5),(5, 6), 
+        (5, 7), (7, 8), (7, 10), (8, 9), 
+        (10, 13), (10, 11), (11, 12), 
+        (13, 14), (13, 15), (15, "i4"), (15, 16)
     ]
 
     pos = {
-        1: (0, 0),
-        2: (1, 0),
+        1: (0, -1),
+        "i1": (-1,0),
+        2: (0, 0),
+        3: (1, 0),
         4: (1, -1),
-        3: (2, 0)  
+        5: (2, 0),
+        6: (2, 2),
+        7: (3, 0),
+        8: (3, 2),
+        9: (3, 3),
+        10: (4, 0),
+        11: (4, -1),
+        12: (4, -2),
+        13: (5, 0),
+        14: (5, -1),
+        15: (6, 0),
+        "i4": (7, 0),
+        16: (6, -1)
     }
 
     start_node = 1
-    end_node = 4
+    end_node = 16
 
     grid_path_finder = GridPathFinder(pos, edges)
     path_dict = grid_path_finder.grid_path(start_node, end_node)

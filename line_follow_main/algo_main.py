@@ -121,7 +121,7 @@ if __name__ == "__main__":
             vertex_edge_dict = graph_analyzer.create_vertex_edge_dict(path, moves, junction_nodes)
             print("Vertex Edge Dict:", vertex_edge_dict)
 
-        graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=vertex_edge_dict)
+        # graph_analyzer.draw_graph(highlight_path=path, vertex_edge_dict=vertex_edge_dict)
 
     else:
         print(f"No path found from {graph_analyzer.start_node} to {graph_analyzer.end_node}")
