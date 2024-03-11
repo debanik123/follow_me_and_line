@@ -30,7 +30,7 @@ pos = {
 
 data = {
     "edges": edges,
-    "pos": pos
+    "poses": pos
 }
 
 # Convert to JSON
