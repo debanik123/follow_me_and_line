@@ -39,11 +39,7 @@
       "17": [5, -2],
       "18": [6, -1]
     },
-<<<<<<< HEAD
     "start_node": 15,
-=======
-    "start_node": 14,
->>>>>>> 74cf73e1edf31a38526ea7d0afc73aa1cb5ba42a
     "end_node": 1
   }
   
