@@ -57,9 +57,23 @@ class GridPathFinder:
             return "TuR"  # Turning Right
         else:
             return "Unk"
+    
+    def nodes_given_node(self, arr, given_node):
+        return arr[arr.index(given_node):] if given_node in arr else []
+
+    def reverse_component_analysis(self, path, reverse_node=None):
+        if reverse_node in path:
+            pre_nodes = path[:path.index(reverse_node)+1]
+            post_nodes = path[path.index(reverse_node):]
+            # print("pre_nodes --> ", pre_nodes)
+            # print("post_nodes --> ", post_nodes)
+
+            return pre_nodes, post_nodes
+
 
     def get_directions(self, path, pos):
         directions = []
+
         for i in range(len(path) - 1):
             current_node = path[i]
             next_node = path[i + 1]
@@ -109,6 +123,13 @@ class GridPathFinder:
 
             path = self.find_shortest_path(start_node, end_node, edges)
 
+            reverse_node = 8
+            rever_path, path = self.reverse_component_analysis(path, reverse_node)
+            print("reverse_path --> ", rever_path)
+            start_node = reverse_node
+            # path = self.nodes_given_node(path, reverse_node)
+            # print("modified_path --> ",path)
+
             if path:
                 print(f"Shortest path from {start_node} to {end_node}: {path}")
                 junction_nodes = self.junction_analysis(G, path)
@@ -141,15 +162,15 @@ class GridPathFinder:
 
 def main():
     edges = [
-        (1, 2), (2, "i1"), (2, 3), (3, 4), (3,5),(5, 6), 
-        (5, 7), (7, 8), (7, 10), (8, 9), 
-        (10, 13), (10, 11), (11, 12), 
-        (13, 14), (13, 15), (15, "i4"), (15, 16)
+        (1, 2), (2, "s1"), (2, 3), (3, 4), (3,5),(5, 6), 
+        (5, 7), (7, 8), (7, 10), (8, 9), (8, "s5"),
+        (10, 13), (10, 11), (11, 12), (11, "s6"),
+        (13, 14), (13, 15), (15, "s4"), (15, 16)
     ]
 
     pos = {
         1: (0, -1),
-        "i1": (-1,0),
+        "s1": (-1,0),
         2: (0, 0),
         3: (1, 0),
         4: (1, -1),
@@ -164,12 +185,15 @@ def main():
         13: (5, 0),
         14: (5, -1),
         15: (6, 0),
-        "i4": (7, 0),
-        16: (6, -1)
+        "s4": (7, 0),
+        16: (6, -1),
+        "s5": (4,2),
+        "s6":(3, -1)
+
     }
 
-    start_node = 1
-    end_node = 9
+    start_node = 9
+    end_node = 1
 
     grid_path_finder = GridPathFinder(pos, edges)
     path_dict = grid_path_finder.grid_path(start_node, end_node)
