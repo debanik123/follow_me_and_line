@@ -48,8 +48,8 @@ class YellowLineFollower(Node):
     def yellow_thresholding(self, input_image):
     #     Scalar lower_yellow(0, 0, 255);  // HSV lower limit for yellow
     # Scalar upper_yellow(255, 135, 255);  // HSV upper limit for yellow
-        lower_yellow = np.array([0, 50, 115], dtype=np.uint8)
-        upper_yellow = np.array([255, 255, 255], dtype=np.uint8)
+        lower_yellow = np.array([0, 0, 0], dtype=np.uint8)
+        upper_yellow = np.array([38, 255, 255], dtype=np.uint8)
         hsv = cv2.cvtColor(input_image, cv2.COLOR_BGR2HSV)
         yellow_mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
         return yellow_mask

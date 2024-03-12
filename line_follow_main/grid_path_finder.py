@@ -123,10 +123,10 @@ class GridPathFinder:
 
             path = self.find_shortest_path(start_node, end_node, edges)
 
-            reverse_node = 8
-            rever_path, path = self.reverse_component_analysis(path, reverse_node)
-            print("reverse_path --> ", rever_path)
-            start_node = reverse_node
+            # reverse_node = 8
+            #rever_path, path = self.reverse_component_analysis(path, reverse_node)
+            # print("reverse_path --> ", rever_path)
+            # start_node = reverse_node
             # path = self.nodes_given_node(path, reverse_node)
             # print("modified_path --> ",path)
 
@@ -139,7 +139,7 @@ class GridPathFinder:
                 print(moves)
 
                 concatenated_moves = self.concatenate_adjacent_elements(moves)
-                print(concatenated_moves)
+                # print(concatenated_moves)
 
                 if junction_nodes:
                     vertex_edge_dict = self.create_vertex_edge_dict(path, moves, junction_nodes)
@@ -183,7 +183,7 @@ def main():
         11: (4, -1),
         12: (4, -2),
         13: (5, 0),
-        14: (5, -1),
+        14: (5, 1),
         15: (6, 0),
         "s4": (7, 0),
         16: (6, -1),
@@ -192,12 +192,15 @@ def main():
 
     }
 
-    start_node = 9
-    end_node = 1
+    start_node = 16
+    end_node = 13
 
     grid_path_finder = GridPathFinder(pos, edges)
     path_dict = grid_path_finder.grid_path(start_node, end_node)
-    print(path_dict)
+
+    ful_path = {start_node: 'Start', **path_dict, end_node: 'Goal'}
+
+    print(ful_path)
 
 
 if __name__ == "__main__":

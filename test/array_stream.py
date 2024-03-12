@@ -33,3 +33,23 @@ given_number = 5
 result, index = numbers_after_given_number(p, given_number)
 print("Numbers after given number:", result)
 print("Index of given number:", index)
+
+# start_node = 16
+# end_node = 14
+
+# my_dict = {15: 'TuL', 13: 'TuR'}
+# # print(**my_dict)
+# # Insert at the beginning
+# my_dict = {start_node: 'Start', **my_dict}
+
+# # Insert at the end
+# my_dict[end_node] = 'Goal'
+
+# print(my_dict)
+
+start_node, end_node = 16, 14
+my_dict = {15: 'TuL', 13: 'TuR'}
+
+my_dict = {start_node: 'Start', **my_dict, end_node: 'Goal'}
+
+print(my_dict)
