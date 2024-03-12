@@ -192,8 +192,8 @@ def main():
 
     }
 
-    start_node = 14
-    end_node = 16
+    start_node = 16
+    end_node = 14
 
     # rever_node = None
     # if rever_node in not None:
@@ -207,6 +207,7 @@ def main():
 
     # print(list(ful_path.items()))
     df = pd.DataFrame(list(ful_path.items()), columns=['Node', 'Job'])
+    df.to_csv("vtx_edg.csv", index=False)
     print(df)
 
 
