@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-
+import pandas as pd
 
 class GridPathFinder:
     def __init__(self, pos, edges):
@@ -192,15 +192,22 @@ def main():
 
     }
 
-    start_node = 16
-    end_node = 13
+    start_node = 14
+    end_node = 16
+
+    # rever_node = None
+    # if rever_node in not None:
+
 
     grid_path_finder = GridPathFinder(pos, edges)
     path_dict = grid_path_finder.grid_path(start_node, end_node)
 
     ful_path = {start_node: 'Start', **path_dict, end_node: 'Goal'}
-
     print(ful_path)
+
+    # print(list(ful_path.items()))
+    df = pd.DataFrame(list(ful_path.items()), columns=['Node', 'Job'])
+    print(df)
 
 
 if __name__ == "__main__":
