@@ -81,7 +81,7 @@ class YellowLineFollower(Node):
         color_image = np.asanyarray(color_frame.get_data())
         midpoint_x, midpoint_y = color_image.shape[1] // 2, color_image.shape[0] // 2
         # Define the size of the resized image
-        new_size = (color_image.shape[1], 100)
+        new_size = (color_image.shape[1], 480)
         # Crop and resize the image
         color_image = cv2.resize(color_image[midpoint_y - new_size[1] // 2:midpoint_y + new_size[1] // 2,
                                             midpoint_x - new_size[0] // 2:midpoint_x + new_size[0] // 2], new_size)
@@ -97,7 +97,6 @@ class YellowLineFollower(Node):
         im_midpoint = (int(color_image.shape[1] // 2.0), int(color_image.shape[0] // 2.0))
         pix_distances = []
         centers = []
-        pvg_rs = PixelToVelocityGenerator_rs(depth_frame)
 
         if contours:
             largest_contour = max(contours, key=cv2.contourArea)
@@ -110,22 +109,18 @@ class YellowLineFollower(Node):
                 cv2.rectangle(color_image, bounding_box, (0, 255, 0), 2)
                 center= (cx, cy)
 
-                min_cm_pix, min_cm_distance = self.cluster_create(color_image, center[0], center[1], depth_frame, color_=(255, 0, 255))
-                min_img_pix, min_Im_distance = self.cluster_create(color_image, im_midpoint[0], im_midpoint[1], depth_frame, color_=(0, 255, 255))
+                cv2.circle(color_image, center, radius=5, color=(0,0,255), thickness=-1)
+                cv2.circle(color_image, im_midpoint, radius=5, color=(255,0,255), thickness=-1)
 
-                linear_velocity, angular_velocity, current_distance = pvg_rs.generate_velocity_from_pixels(min_img_pix, min_cm_pix)
-                
-                # print(linear_velocity)
+                error = cx - im_midpoint[0]
+                proportional_gain = 0.01
+                control_output = proportional_gain * error
 
+                linear_velocity = 0.5  # Set your desired linear velocity
+                angular_velocity = -control_output
+
+                # print(linear_velocity, angular_velocity)
                 self.cmd_vel(linear_velocity, angular_velocity)
-                
-                linear_x_str = "{:.3f}".format(linear_velocity)
-                angular_z_str = "{:.3f}".format(angular_velocity)
-                curr_dis_str = "{:.4f}".format(current_distance)
-
-                cv2.putText(color_image, "linear_x: "+ linear_x_str +" angular_z: " + angular_z_str,(min_cm_pix[0], min_cm_pix[0]),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
-                cv2.putText(color_image, "curr_dis: "+str(curr_dis_str),(min_cm_pix[0], min_cm_pix[0]-80),0, 1.0, (255,255,255),1, lineType=cv2.LINE_AA)
-                
             
             
         cv2.imshow("Yellow Line Following", color_image)
